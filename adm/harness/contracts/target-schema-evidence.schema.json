@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/target-schema-evidence.schema.json",
+  "title": "Verified Device42 Target Schema Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["product", "installed_version", "template_reference", "retrieved_at", "verified_by", "supported_ci_types", "supported_relationship_types", "required_fields", "matching_keys", "environment", "write_capability_available_to_agent"],
+  "properties": {
+    "product": {"const": "Device42"},
+    "installed_version": {"type": "string", "minLength": 1},
+    "template_reference": {"type": "string", "minLength": 1},
+    "retrieved_at": {"type": "string", "format": "date-time"},
+    "verified_by": {"type": "string", "minLength": 1},
+    "supported_ci_types": {"type": "array", "items": {"type": "string"}},
+    "supported_relationship_types": {"type": "array", "items": {"type": "string"}},
+    "required_fields": {"type": "array", "items": {"type": "string"}},
+    "matching_keys": {"type": "array", "items": {"type": "string"}},
+    "environment": {"const": "non-production"},
+    "write_capability_available_to_agent": {"const": false},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

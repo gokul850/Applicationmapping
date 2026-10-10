@@ -1,0 +1,8 @@
+{
+  "resources": [
+    {"resource_id": "/subscriptions/synthetic-a/resourceGroups/rg-shared/providers/example/serviceA", "resource_group": "rg-shared", "application_id": "APP-A"},
+    {"resource_id": "/subscriptions/synthetic-a/resourceGroups/rg-shared/providers/example/serviceB", "resource_group": "rg-shared", "application_id": "APP-B"}
+  ],
+  "runtime_evidence": [],
+  "expected_review": "No confirmed runtime dependency from shared resource group alone."
+}

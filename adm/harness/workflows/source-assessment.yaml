@@ -1,0 +1,63 @@
+name: source-assessment
+version: 0.1.0
+status: draft
+description: Profile only declared source files and create a source catalogue plus data-quality findings.
+policy_refs:
+  - ../policies/safety-policy.md
+  - ../policies/data-handling.md
+inputs:
+  - name: run_manifest
+    schema_ref: ../contracts/run-manifest.schema.json
+    required: true
+  - name: declared_sources
+    schema_ref: ../contracts/source-catalogue-set.schema.json
+    required: true
+steps:
+  - id: validate-manifest
+    kind: deterministic
+    description: Check manifest contract, approved scope, mode, and declared source list; reject unknown paths.
+    allowed_tools: [schema.validate, file.read_scoped]
+    inputs: [run_manifest, declared_sources]
+    outputs: [validated_manifest]
+    on_failure: stop_run
+  - id: profile-sources
+    kind: deterministic
+    description: Count records, inspect headers and identifiers, record extraction metadata, and flag sensitive fields without opening secret stores.
+    allowed_tools: [file.read_scoped, csv.profile, schema.validate]
+    inputs: [validated_manifest, declared_sources]
+    outputs: [source_profiles]
+    on_failure: queue_exception
+  - id: summarize-source-quality
+    kind: model
+    description: Summarize source quality and limitations from minimized profiles; do not assert unobserved facts.
+    prompt_ref: ../prompts/source-assessor.md
+    allowed_tools: [model.structured_output]
+    inputs: [source_profiles]
+    outputs: [source_assessment]
+    on_failure: retry_once_then_stop
+  - id: source-owner-review
+    kind: human_gate
+    description: Review source scope, sensitivity, freshness, and intended use before downstream reconciliation.
+    allowed_tools: [none]
+    inputs: [source_assessment]
+    outputs: [source_review_decision]
+    human_gate:
+      required: true
+      reviewer_role: source_owner_or_data_steward
+      criteria:
+        - Confirm declared sources and intended use.
+        - Resolve unknown sensitivity or mark the source blocked from model processing.
+        - Confirm freshness limitations and sources not inspected.
+    on_failure: stop_run
+  - id: write-draft-catalogue
+    kind: deterministic
+    description: Validate and persist the catalogue/report as draft artefacts with run provenance.
+    allowed_tools: [schema.validate, artifact.write_draft]
+    inputs: [source_assessment, source_review_decision]
+    outputs: [draft_source_catalogue]
+    on_failure: stop_run
+outputs:
+  - name: source_assessment
+    schema_ref: ../contracts/source-assessment-output.schema.json
+    draft_only: true
+failure_policy: stop_on_policy_violation

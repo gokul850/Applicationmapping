@@ -1,0 +1,8 @@
+{
+  "ci_id": "CI-SYN-ORPHAN-1",
+  "ci_name": "legacy-worker-synthetic",
+  "last_observed": "2024-01-01T00:00:00Z",
+  "application_mapping": null,
+  "decommission_evidence": null,
+  "expected_review": "Create an investigation exception; do not recommend or execute deletion from stale/unmapped status alone."
+}

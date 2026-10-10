@@ -1,0 +1,7 @@
+{
+  "records": [
+    {"source_id": "registry-a", "source_record_id": "APP-101", "record_type": "application", "fields": {"name": "Cab Dispatch", "environment": "Production"}, "extraction_time": "2026-01-15T00:00:00Z"},
+    {"source_id": "registry-a", "source_record_id": "APP-202", "record_type": "application", "fields": {"name": "Cab Dispatch Portal", "environment": "Production"}, "extraction_time": "2026-01-15T00:00:00Z"}
+  ],
+  "expected_review": "Keep separate unless additional authoritative evidence establishes identity. Similar names alone do not merge."
+}

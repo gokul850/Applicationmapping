@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/run-manifest.schema.json",
+  "title": "ADM Agent Run Manifest",
+  "description": "Declares one bounded run. This contract does not grant system access or change authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "requester", "purpose", "scope", "mode", "sources", "versions", "output", "reviewer", "status"],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^RUN-[A-Za-z0-9._-]+$"},
+    "requester": {
+      "type": "object", "additionalProperties": false,
+      "required": ["subject", "role"],
+      "properties": {"subject": {"type": "string", "minLength": 1}, "role": {"type": "string", "minLength": 1}}
+    },
+    "purpose": {"type": "string", "minLength": 10},
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["business_domains", "priority_scope", "environments", "excluded_sources"],
+      "properties": {
+        "business_domains": {"type": "array", "uniqueItems": true, "items": {"enum": ["Taxi Networks", "Taxi Payments", "MTi", "Shared Enterprise Services"]}},
+        "priority_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "environments": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "excluded_sources": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "mode": {"enum": ["offline-read-only", "connected-read-only", "dry-run"]},
+    "target_environment": {"enum": ["none", "non-production", "production"], "default": "none"},
+    "sources": {"type": "array", "items": {"$ref": "source-catalogue.schema.json"}},
+    "versions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["skill", "policy", "schema_bundle", "workflow", "prompt_bundle", "code"],
+      "properties": {
+        "skill": {"type": "string"}, "policy": {"type": "string"}, "schema_bundle": {"type": "string"},
+        "workflow": {"type": "string"}, "prompt_bundle": {"type": "string"}, "code": {"type": "string"},
+        "model_runtime": {"type": ["string", "null"]}
+      }
+    },
+    "output": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reference", "sensitivity", "retention_class"],
+      "properties": {"reference": {"type": "string", "minLength": 1}, "sensitivity": {"enum": ["public", "internal", "confidential", "restricted", "unknown"]}, "retention_class": {"type": "string", "minLength": 1}}
+    },
+    "reviewer": {"type": "string", "minLength": 1},
+    "status": {"enum": ["planned", "running", "completed", "blocked", "failed", "cancelled"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "started_at": {"type": ["string", "null"], "format": "date-time"},
+    "completed_at": {"type": ["string", "null"], "format": "date-time"}
+  }
+}

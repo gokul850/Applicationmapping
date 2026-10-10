@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/canonical-record-bundle.schema.json",
+  "title": "Canonical ADM Record Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["applications", "cis", "relationships"],
+  "properties": {
+    "applications": {"type": "array", "items": {"$ref": "application.schema.json"}},
+    "cis": {"type": "array", "items": {"$ref": "ci.schema.json"}},
+    "relationships": {"type": "array", "items": {"$ref": "relationship.schema.json"}}
+  }
+}

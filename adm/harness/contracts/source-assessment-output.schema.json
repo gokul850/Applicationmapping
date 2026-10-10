@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/source-assessment-output.schema.json",
+  "title": "Source Assessment Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sources", "findings", "coverage_statement", "not_inspected_sources"],
+  "properties": {
+    "sources": {"type": "array", "items": {"$ref": "source-catalogue.schema.json"}},
+    "findings": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["finding_id", "severity", "category", "summary", "evidence_refs", "recommended_action"], "properties": {"finding_id": {"type": "string"}, "severity": {"enum": ["critical", "high", "medium", "low", "info"]}, "category": {"type": "string"}, "summary": {"type": "string"}, "source_id": {"type": ["string", "null"]}, "evidence_refs": {"type": "array", "items": {"type": "string"}}, "recommended_action": {"type": "string"}}}},
+    "coverage_statement": {"type": "string", "minLength": 1},
+    "not_inspected_sources": {"type": "array", "items": {"type": "string"}}
+  }
+}

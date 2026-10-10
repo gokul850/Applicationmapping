@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/exception.schema.json",
+  "title": "ADM Exception Queue Item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["exception_id", "exception_type", "priority", "status", "summary", "affected_record_ids", "evidence_refs", "next_action"],
+  "properties": {
+    "exception_id": {"type": "string", "minLength": 1},
+    "exception_type": {"enum": ["ambiguous_identity", "potential_duplicate", "source_conflict", "unknown_domain_or_group", "unknown_owner", "missing_hosting_evidence", "unmapped_resource", "suspected_stale_resource", "unverified_dependency", "unsupported_target_field", "target_integration_limitation", "sensitive_data_detected", "other"]},
+    "priority": {"enum": ["critical", "high", "medium", "low", "unprioritized"]},
+    "status": {"enum": ["open", "in_review", "blocked", "resolved", "accepted_risk", "closed"]},
+    "summary": {"type": "string", "minLength": 1},
+    "affected_record_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "assigned_to": {"type": ["string", "null"]},
+    "next_action": {"type": "string", "minLength": 1},
+    "due_at": {"type": ["string", "null"], "format": "date-time"},
+    "decision_id": {"type": ["string", "null"]}
+  }
+}

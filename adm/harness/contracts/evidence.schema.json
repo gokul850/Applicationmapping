@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/evidence.schema.json",
+  "title": "ADM Evidence Reference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "source_id", "source_record_id", "reference", "method", "claim_relation", "confidence"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_record_id": {"type": "string", "minLength": 1},
+    "reference": {"type": "string", "minLength": 1, "description": "Field path, record locator, or controlled evidence reference; not a secret value."},
+    "observed_at": {"type": ["string", "null"], "format": "date-time"},
+    "extracted_at": {"type": ["string", "null"], "format": "date-time"},
+    "method": {"enum": ["source_field", "deployment_definition", "configuration_metadata", "api_definition", "monitoring_topology", "network_flow", "dns_record", "database_metadata", "queue_metadata", "owner_confirmation", "other"]},
+    "claim_relation": {"enum": ["supports", "contradicts", "context_only"]},
+    "redacted_excerpt": {"type": ["string", "null"], "maxLength": 500},
+    "confidence": {"enum": ["confirmed", "probable", "candidate", "unknown", "rejected"]},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

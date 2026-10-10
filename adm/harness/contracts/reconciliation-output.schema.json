@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/reconciliation-output.schema.json",
+  "title": "Application Reconciliation Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["application_proposals", "exceptions", "reconciliation_summary", "limitations"],
+  "properties": {
+    "application_proposals": {"type": "array", "items": {"$ref": "application.schema.json"}},
+    "exceptions": {"type": "array", "items": {"$ref": "exception.schema.json"}},
+    "reconciliation_summary": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "product": "Device42",
+  "installed_version": null,
+  "template_reference": null,
+  "retrieved_at": null,
+  "verified_by": null,
+  "supported_ci_types": [],
+  "supported_relationship_types": [],
+  "required_fields": [],
+  "matching_keys": [],
+  "environment": "non-production",
+  "write_capability_available_to_agent": false,
+  "limitations": ["Synthetic fixture intentionally lacks installed version and template evidence."]
+}

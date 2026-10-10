@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/decision.schema.json",
+  "title": "ADM Human Decision Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "date", "question", "options_considered", "recommendation", "evidence_refs", "confidence", "decision_owner", "disposition", "affected_record_ids"],
+  "properties": {
+    "decision_id": {"type": "string", "minLength": 1},
+    "date": {"type": "string", "format": "date-time"},
+    "question": {"type": "string", "minLength": 1},
+    "options_considered": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "recommendation": {"type": "string", "minLength": 1},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"enum": ["confirmed", "probable", "candidate", "unknown", "rejected"]},
+    "decision_owner": {"type": "string", "minLength": 1},
+    "final_approver": {"type": ["string", "null"]},
+    "disposition": {"enum": ["pending", "approved", "rejected", "deferred"]},
+    "final_decision": {"type": ["string", "null"]},
+    "affected_record_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "approval_scope_hash": {"type": ["string", "null"], "description": "Required by a future separately approved change process; not an execution grant."},
+    "revisit_at": {"type": ["string", "null"], "format": "date-time"},
+    "comments": {"type": "array", "items": {"type": "string"}}
+  }
+}

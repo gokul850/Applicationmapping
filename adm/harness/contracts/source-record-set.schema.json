@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/source-record-set.schema.json",
+  "title": "ADM Normalized Source Record Set",
+  "type": "array",
+  "items": {"$ref": "source-record.schema.json"}
+}

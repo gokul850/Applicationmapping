@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/evidence-record-set.schema.json",
+  "title": "ADM Evidence Record Set",
+  "type": "array",
+  "items": {"$ref": "evidence.schema.json"}
+}

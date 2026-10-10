@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/dependency-output.schema.json",
+  "title": "Dependency Discovery Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["relationship_candidates", "exceptions", "coverage_statement", "limitations"],
+  "properties": {
+    "relationship_candidates": {"type": "array", "items": {"$ref": "relationship.schema.json"}},
+    "exceptions": {"type": "array", "items": {"$ref": "exception.schema.json"}},
+    "coverage_statement": {"type": "string", "minLength": 1},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

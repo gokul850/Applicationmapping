@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/source-catalogue.schema.json",
+  "title": "ADM Source Catalogue Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "source_name", "source_system", "source_reference", "extraction_time", "record_count", "fields", "unique_identifiers", "limitations", "sensitivity", "intended_use", "freshness_confidence", "inspection_status"],
+  "properties": {
+    "source_id": {"type": "string", "minLength": 1},
+    "source_name": {"type": "string", "minLength": 1},
+    "source_system": {"type": "string", "minLength": 1},
+    "source_reference": {"type": "string", "minLength": 1, "description": "Opaque path or approved source reference; must not contain credentials or signed secret URLs."},
+    "extraction_time": {"type": ["string", "null"], "format": "date-time"},
+    "record_count": {"type": ["integer", "null"], "minimum": 0},
+    "fields": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["name", "definition", "sensitivity"], "properties": {"name": {"type": "string"}, "definition": {"type": ["string", "null"]}, "sensitivity": {"enum": ["public", "internal", "confidential", "restricted", "unknown"]}}}},
+    "unique_identifiers": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "sensitivity": {"enum": ["public", "internal", "confidential", "restricted", "unknown"]},
+    "intended_use": {"type": "string", "minLength": 1},
+    "freshness_confidence": {"enum": ["high", "medium", "low", "unknown"]},
+    "inspection_status": {"enum": ["inspected", "partially_inspected", "not_inspected", "unavailable", "excluded"]},
+    "inspected_at": {"type": ["string", "null"], "format": "date-time"},
+    "owner": {"type": ["string", "null"]}
+  }
+}

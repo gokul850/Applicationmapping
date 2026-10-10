@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/source-catalogue-set.schema.json",
+  "title": "ADM Source Catalogue Set",
+  "type": "array",
+  "items": {"$ref": "source-catalogue.schema.json"}
+}

@@ -1,0 +1,66 @@
+name: dependency-discovery
+version: 0.1.0
+status: draft
+description: Produce evidence-linked dependency candidates and a review queue; do not infer from shared infrastructure alone.
+policy_refs:
+  - ../policies/safety-policy.md
+  - ../policies/approval-gates.md
+inputs:
+  - name: run_manifest
+    schema_ref: ../contracts/run-manifest.schema.json
+    required: true
+  - name: ci_records
+    schema_ref: ../contracts/ci-record-set.schema.json
+    required: true
+  - name: evidence_records
+    schema_ref: ../contracts/evidence-record-set.schema.json
+    required: true
+steps:
+  - id: validate-evidence
+    kind: deterministic
+    description: Check evidence references, source scope, timestamps where available, environment, and redaction.
+    allowed_tools: [schema.validate, file.read_scoped]
+    inputs: [run_manifest, ci_records, evidence_records]
+    outputs: [validated_evidence]
+    on_failure: queue_exception
+  - id: propose-relationships
+    kind: model
+    description: Suggest typed candidate relationships only when source/target and evidence are explicit; preserve contradictions and gaps.
+    prompt_ref: ../prompts/dependency-analyst.md
+    allowed_tools: [model.structured_output]
+    inputs: [ci_records, validated_evidence]
+    outputs: [dependency_output]
+    on_failure: retry_once_then_stop
+  - id: validate-graph-candidates
+    kind: deterministic
+    description: Verify endpoint IDs, evidence links, relationship types, environment consistency, and candidate/validation status.
+    allowed_tools: [schema.validate]
+    inputs: [dependency_output]
+    outputs: [validated_dependency_output]
+    on_failure: queue_exception
+  - id: critical-edge-review
+    kind: human_gate
+    description: Review priority, cross-portfolio, security-sensitive, and operationally high-impact relationships.
+    allowed_tools: [none]
+    inputs: [validated_dependency_output]
+    outputs: [reviewed_dependency_output]
+    human_gate:
+      required: true
+      reviewer_role: technical_owner_and_business_service_owner
+      criteria:
+        - Every proposed edge has a traceable evidence reference.
+        - Shared subscription, network, resource group, cluster, technology, or repository alone is not treated as proof.
+        - Environment and confidence are visible; unsupported edges remain candidates or exceptions.
+    on_failure: stop_run
+  - id: write-draft-relationship-register
+    kind: deterministic
+    description: Write reviewable graph/register files and coverage limitations as draft artefacts only.
+    allowed_tools: [artifact.write_draft, schema.validate]
+    inputs: [reviewed_dependency_output]
+    outputs: [draft_relationship_register]
+    on_failure: stop_run
+outputs:
+  - name: dependency_output
+    schema_ref: ../contracts/dependency-output.schema.json
+    draft_only: true
+failure_policy: stop_on_policy_violation

@@ -1,0 +1,17 @@
+{
+  "source_id": "source-not-mounted",
+  "source_name": "Example on-prem inventory export",
+  "source_system": "inventory-system",
+  "source_reference": "unavailable://source-not-mounted",
+  "extraction_time": null,
+  "record_count": null,
+  "fields": [],
+  "unique_identifiers": [],
+  "limitations": ["Source was not mounted or accessible during this test run."],
+  "sensitivity": "unknown",
+  "intended_use": "Synthetic regression test only",
+  "freshness_confidence": "unknown",
+  "inspection_status": "unavailable",
+  "inspected_at": null,
+  "owner": null
+}

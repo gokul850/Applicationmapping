@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/adm/harness/contracts/report-output.schema.json",
+  "title": "ADM Agent Cycle Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scope", "findings", "proposed_changes", "quality_and_risk", "artefacts", "human_decisions", "next_action"],
+  "properties": {
+    "scope": {"type": "string", "minLength": 1},
+    "findings": {"type": "array", "items": {"type": "string"}},
+    "proposed_changes": {"type": "array", "items": {"type": "string"}},
+    "quality_and_risk": {"type": "array", "items": {"type": "string"}},
+    "artefacts": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["reference", "schema", "validation_status"], "properties": {"reference": {"type": "string"}, "schema": {"type": "string"}, "validation_status": {"enum": ["valid", "invalid", "not_run", "blocked"]}}}},
+    "human_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["question", "owner", "priority"], "properties": {"question": {"type": "string"}, "owner": {"type": ["string", "null"]}, "priority": {"enum": ["critical", "high", "medium", "low"]}}}},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

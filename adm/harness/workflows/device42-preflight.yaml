@@ -1,0 +1,66 @@
+name: device42-preflight
+version: 0.1.0
+status: draft
+description: Validate a proposed mapping against independently verified target-version templates and produce a dry-run report without importing.
+policy_refs:
+  - ../policies/safety-policy.md
+  - ../policies/approval-gates.md
+inputs:
+  - name: run_manifest
+    schema_ref: ../contracts/run-manifest.schema.json
+    required: true
+  - name: canonical_records
+    schema_ref: ../contracts/canonical-record-bundle.schema.json
+    required: true
+  - name: verified_target_template_reference
+    schema_ref: ../contracts/target-schema-evidence.schema.json
+    required: true
+steps:
+  - id: verify-target-evidence
+    kind: deterministic
+    description: Confirm target product/version, template source, retrieval date, supported keys/types/enums, and non-production context are recorded.
+    allowed_tools: [schema.validate, file.read_scoped]
+    inputs: [run_manifest, verified_target_template_reference]
+    outputs: [target_preflight_evidence]
+    on_failure: stop_run
+  - id: target-owner-review
+    kind: human_gate
+    description: Have the Device42/platform owner attest that the target template evidence matches the installed version and environment.
+    allowed_tools: [none]
+    inputs: [target_preflight_evidence]
+    outputs: [target_schema_decision]
+    human_gate:
+      required: true
+      reviewer_role: device42_platform_owner
+      criteria:
+        - Exact installed version and schema/template reference are recorded.
+        - Supported CI types, relationship types, required fields, and keys are verified.
+        - The run is not using production write credentials or an import endpoint.
+    on_failure: stop_run
+  - id: validate-draft-mapping
+    kind: deterministic
+    description: Check required fields, controlled values, key uniqueness, referential integrity, environment consistency, and CSV encoding against the verified template.
+    allowed_tools: [schema.validate, csv.profile]
+    inputs: [canonical_records, target_schema_decision]
+    outputs: [dry_run_findings]
+    on_failure: queue_exception
+  - id: summarize-preflight
+    kind: model
+    description: Explain validation findings and unresolved limitations; never label output import-ready unless all target checks pass and a separate human change process approves.
+    prompt_ref: ../prompts/report-writer.md
+    allowed_tools: [model.structured_output]
+    inputs: [dry_run_findings, target_schema_decision]
+    outputs: [preflight_report]
+    on_failure: retry_once_then_stop
+  - id: write-draft-package
+    kind: deterministic
+    description: Store draft files and dry-run report; this workflow has no import, write, merge, or delete operation.
+    allowed_tools: [artifact.write_draft, schema.validate]
+    inputs: [dry_run_findings, preflight_report]
+    outputs: [draft_package]
+    on_failure: stop_run
+outputs:
+  - name: preflight_report
+    schema_ref: ../contracts/report-output.schema.json
+    draft_only: true
+failure_policy: stop_on_policy_violation
