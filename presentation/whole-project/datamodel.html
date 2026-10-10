@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
+
+    .stack-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      border: 1px solid #CBD5E1;
+      background: #FFFFFF;
+    }
+    .layer-label {
+      background: #E2E8F0;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #0F766E;
+    }
+    .layer-content {
+      padding: 24px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .item strong { display: block; font-size: 16px; margin-bottom: 4px; color: #0F2537; }
+    .item span { font-size: 13px; color: #475569; display: block; line-height: 1.3; }
+
+    .evidence-bar {
+      margin-top: 32px;
+      border: 1px dashed #D97706;
+      padding: 24px;
+      background: #FFFBEB;
+    }
+    .evidence-bar h3 { font-size: 14px; color: #D97706; text-transform: uppercase; margin-bottom: 16px; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Model applications, deployments, CIs, and evidence separately</h2>
+    <div class="rule"></div>
+
+    <div class="stack-container">
+      <div class="layer">
+        <div class="layer-label">Application Layer</div>
+        <div class="layer-content">
+          <div class="item"><strong>Canonical ID</strong><span>Authoritative registry key</span></div>
+          <div class="item"><strong>Business Context</strong><span>Domain & logical group</span></div>
+          <div class="item"><strong>Ownership</strong><span>Support teams & owners</span></div>
+          <div class="item"><strong>Lifecycle</strong><span>Production / DR / Test</span></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-label">Deployment Layer</div>
+        <div class="layer-content">
+          <div class="item"><strong>Azure / On-Prem</strong><span>Mapped hosting evidence</span></div>
+          <div class="item"><strong>Environments</strong><span>Consistent env tagging</span></div>
+          <div class="item"><strong>Dependencies</strong><span>Typed graph relationships</span></div>
+          <div class="item"><strong>Normalization</strong><span>Identity resolution tiers</span></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-label">CI Layer</div>
+        <div class="layer-content">
+          <div class="item"><strong>Compute / Runtime</strong><span>VM, App Service, Funct.</span></div>
+          <div class="item"><strong>Data / Messaging</strong><span>SQL, Cosmos, Queue</span></div>
+          <div class="item"><strong>Network / Device</strong><span>API Gateway, DNS, IP</span></div>
+          <div class="item"><strong>Native ID</strong><span>Subscription & provider keys</span></div>
+        </div>
+      </div>
+
+      <div class="evidence-bar">
+        <h3>Evidence & Provenance (The Foundation)</h3>
+        <div class="evidence-grid">
+          <div class="item"><strong>Traceability</strong><span>Preserved source record IDs</span></div>
+          <div class="item"><strong>Confidence</strong><span>Probable vs Confirmed</span></div>
+          <div class="item"><strong>Validation</strong><span>Owner attestations</span></div>
+          <div class="item"><strong>Conflict</strong><span>Explicit exception queues</span></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Logical Model: adm/skill.md Sections 6-9</span>
+      <span>4</span>
+    </footer>
+  </div>
+</body>
+</html>

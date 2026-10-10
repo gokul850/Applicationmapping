@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
+
+    .table-container { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #CBD5E1; }
+    th { background: #0F2537; color: white; text-align: left; padding: 16px 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    td { padding: 14px 20px; border-bottom: 1px solid #E2E8F0; font-size: 14px; vertical-align: top; line-height: 1.3; }
+    tr:nth-child(even) td { background: #F8F9FA; }
+
+    .gate-id { font-weight: 800; color: #0F766E; }
+    .gate-name { font-weight: 700; color: #0F2537; display: block; margin-bottom: 2px; }
+
+    .amber-dot { display: inline-block; width: 8px; height: 8px; background: #D97706; margin-right: 8px; }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Readiness gates control every material transition</h2>
+    <div class="rule"></div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Gate</th>
+            <th style="width: 45%;">Evidence Required</th>
+            <th style="width: 35%;">Decision Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gate-id">G0</span> <span class="gate-name">Mobilisation</span></td>
+            <td>Scope, owners, access boundaries, and source plan.</td>
+            <td>Start read-only discovery phase.</td>
+          </tr>
+          <tr>
+            <td><span class="gate-id">G1</span> <span class="gate-name">Model & Target Fit</span></td>
+            <td>Source catalogue, taxonomy, and Device42 schema evidence.</td>
+            <td>Approve reconciliation and prototype mapping.</td>
+          </tr>
+          <tr>
+            <td><span class="gate-id">G2</span> <span class="gate-name">Priority ADM</span></td>
+            <td>Verified identities, CI mappings, and relationship evidence.</td>
+            <td><span class="amber-dot"></span>Accept Q1 Foundation readiness.</td>
+          </tr>
+          <tr>
+            <td><span class="gate-id">G3</span> <span class="gate-name">Import Package</span></td>
+            <td>Exact target schema validation and dry-run findings.</td>
+            <td>Approve a specific production import set.</td>
+          </tr>
+          <tr>
+            <td><span class="gate-id">G4</span> <span class="gate-name">ITSM Pilot</span></td>
+            <td>CMDB readiness, integration tests, and UAT results.</td>
+            <td>Authorise bounded workflow pilot.</td>
+          </tr>
+          <tr>
+            <td><span class="gate-id">G5</span> <span class="gate-name">Rollout Approval</span></td>
+            <td>Pilot outcomes, resolved defects, and support model.</td>
+            <td><span class="amber-dot"></span>Authorise full production rollout.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <span>Governance Framework: adm/approach.md Section 8</span>
+      <span>8</span>
+    </footer>
+  </div>
+</body>
+</html>

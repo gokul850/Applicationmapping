@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 60px; }
+
+    .stages-container { flex: 1; display: flex; flex-direction: column; gap: 40px; justify-content: center; }
+
+    .stage-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+    .stage-box {
+      border: 1px solid #CBD5E1;
+      background: white;
+      padding: 24px;
+      position: relative;
+    }
+    .stage-box::after {
+      content: "→";
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: #CBD5E1;
+      font-weight: 700;
+    }
+    .stage-box:last-child::after { display: none; }
+
+    .stage-num { font-weight: 800; font-size: 12px; color: #475569; margin-bottom: 12px; }
+    .stage-box h3 { font-size: 16px; color: #0F766E; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; height: 40px; line-height: 1.2; }
+    .stage-box p { font-size: 14px; color: #475569; line-height: 1.3; }
+
+    .output-label {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed #E2E8F0;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #D97706;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>The execution journey moves evidence through gated stages</h2>
+    <div class="rule"></div>
+
+    <div class="stages-container">
+      <div class="stage-row">
+        <div class="stage-box">
+          <div class="stage-num">STAGE 0 & 1</div>
+          <h3>Source & Taxonomy</h3>
+          <p>Catalogue inputs and apply business domain/group rules.</p>
+          <div class="output-label">Source Catalogue</div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-num">STAGE 2</div>
+          <h3>App Reconciliation</h3>
+          <p>Match registry items against Azure/On-prem evidence.</p>
+          <div class="output-label">Canonical Registry</div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-num">STAGE 3</div>
+          <h3>CI Classification</h3>
+          <p>Categorize resources and map deployment context.</p>
+          <div class="output-label">Technical CI Inventory</div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-num">STAGE 4 & 5</div>
+          <h3>ADM Discovery</h3>
+          <p>Build and validate the dependency graph edges.</p>
+          <div class="output-label">Relationship Register</div>
+        </div>
+      </div>
+
+      <div class="stage-row" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
+        <div class="stage-box">
+          <div class="stage-num">STAGE 6</div>
+          <h3>Device42 Preflight</h3>
+          <p>Schema validation and import package dry-runs.</p>
+          <div class="output-label">Validated Package</div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-num">STAGE 7</div>
+          <h3>CMDB Governance</h3>
+          <p>Establish stewardship, refresh, and audit runbooks.</p>
+          <div class="output-label">Operating Runbook</div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-num">STAGE 8</div>
+          <h3>ITSM Preparation</h3>
+          <p>Onboard Incident and Change to the CMDB foundation.</p>
+          <div class="output-label">Service Catalogue</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Execution Workflow: adm/skill.md Section 10</span>
+      <span>7</span>
+    </footer>
+  </div>
+</body>
+</html>

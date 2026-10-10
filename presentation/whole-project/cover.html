@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #0F2537; color: #FFFFFF; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 48px;
+    }
+    .title-group { margin-top: 60px; max-width: 800px; z-index: 2; }
+    h1 { font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    .subtitle { font-size: 24px; color: #E2E8F0; opacity: 0.9; }
+
+    .accent-block { width: 80px; height: 8px; background: #0F766E; margin-bottom: 40px; }
+
+    .hero-image {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 800px;
+      height: 500px;
+      object-fit: cover;
+      opacity: 0.15;
+      z-index: 1;
+      mask-image: linear-gradient(to top left, black, transparent);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      font-size: 14px;
+      color: #94A3B8;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <img src="./assets/network-bg.jpeg" class="hero-image">
+    <div class="title-group">
+      <div class="accent-block"></div>
+      <h1>CMDB, ADM & ITSM Transformation</h1>
+      <p class="subtitle">Building an evidence-based foundation for governed applications, infrastructure, and automated service management.</p>
+    </div>
+    <div class="footer">
+      ADM Project | Whole-Project Briefing | Draft v0.1.0
+    </div>
+  </div>
+</body>
+</html>

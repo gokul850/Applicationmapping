@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      background: #F8F9FA;
+      color: #0F172A;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
+    header { border-top: 2px solid #0D9488; padding-top: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; }
+    h2 { font-size: 30px; font-weight: 700; color: #0A192F; }
+    .draft-square { width: 6px; height: 6px; background: #D97706; }
+
+    .table-container { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #CBD5E1; }
+    th { background: #0A192F; color: white; text-align: left; padding: 18px 24px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    td { padding: 20px 24px; border-bottom: 1px solid #E2E8F0; font-size: 16px; vertical-align: top; line-height: 1.4; }
+    tr:nth-child(even) td { background: #F1F5F9; }
+
+    .wf-name { font-weight: 700; color: #0D9488; display: block; margin-bottom: 4px; }
+    .reviewer-tag {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #0D9488;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #64748B; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <header>
+      <h2>Four bounded workflows, clear owners</h2>
+      <div class="draft-square"></div>
+    </header>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Workflow</th>
+            <th style="width: 45%;">Core Analysis</th>
+            <th style="width: 30%;">Human Checkpoint</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="wf-name">Source Assessment</span></td>
+            <td>Profile schemas, counts, identifiers, and sensitive field indicators.</td>
+            <td><span class="reviewer-tag">Source Owner</span><br>Confirm scope, use, and sensitivity.</td>
+          </tr>
+          <tr>
+            <td><span class="wf-name">App Reconciliation</span></td>
+            <td>Strong-key identity matching and canonical proposal generation.</td>
+            <td><span class="reviewer-tag">Domain Steward</span><br>Resolve ambiguous identities & merges.</td>
+          </tr>
+          <tr>
+            <td><span class="wf-name">Dependency Discovery</span></td>
+            <td>Evidence-linked graph generation from deployment and runtime metadata.</td>
+            <td><span class="reviewer-tag">Technical Owner</span><br>Validate high-impact runtime edges.</td>
+          </tr>
+          <tr>
+            <td><span class="wf-name">Device42 Preflight</span></td>
+            <td>Independent schema validation and dry-run reporting against verified targets.</td>
+            <td><span class="reviewer-tag">Platform Owner</span><br>Verify version/template evidence.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <span>Workflow Inventory: adm/harness/workflows/</span>
+      <span>5</span>
+    </footer>
+  </div>
+</body>
+</html>

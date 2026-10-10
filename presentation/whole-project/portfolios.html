@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 36px; display: flex; flex-direction: column; }
+    h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 24px; }
+
+    .portfolio-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      min-height: 0;
+    }
+
+    .portfolio-card {
+      border: 1px solid #CBD5E1;
+      padding: 20px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .portfolio-card h3 { font-size: 18px; color: #0F766E; text-transform: uppercase; letter-spacing: 1px; }
+    .portfolio-card p { font-size: 14px; line-height: 1.3; color: #475569; }
+    .portfolio-card ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+    .portfolio-card li { font-size: 13px; color: #0F2537; font-weight: 700; position: relative; padding-left: 14px; }
+    .portfolio-card li::before { content: "▪"; position: absolute; left: 0; color: #0F766E; font-size: 10px; top: 3px; }
+
+    .evidence-rule-bar {
+      margin-top: 18px;
+      padding: 16px;
+      background: #0F2537;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .rule-title { font-weight: 700; color: #D97706; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; min-width: 160px; }
+    .rule-text { font-size: 15px; opacity: 0.95; line-height: 1.25; }
+
+    footer { display: flex; justify-content: space-between; font-size: 11px; color: #475569; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Four distinct domains, one connected dependency graph</h2>
+    <div class="rule"></div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <h3>Taxi Networks</h3>
+        <p>Owned brands and network operations including booking, dispatch, fleet, and technology.</p>
+        <ul>
+          <li>Booking & Dispatch</li>
+          <li>Operator & Fleet</li>
+          <li>Customer Channels</li>
+          <li>Partner Integrations</li>
+        </ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Taxi Payments</h3>
+        <p>Processing, card instruments, closed-loop systems, and government subsidy programmes.</p>
+        <ul>
+          <li>Payment Processing</li>
+          <li>Cards & Closed Loop</li>
+          <li>Device Services</li>
+          <li>Subsidy Programs</li>
+        </ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>MTi</h3>
+        <p>External dispatch products; preserve product vs customer/tenant deployment distinctions.</p>
+        <ul>
+          <li>Core Dispatch Product</li>
+          <li>Customer Solutions</li>
+          <li>Customer Integrations</li>
+          <li>Product Operations</li>
+        </ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Shared Enterprise</h3>
+        <p>Services genuinely shared across portfolios; validate actual consumers before classifying.</p>
+        <ul>
+          <li>Identity & Security</li>
+          <li>API & Integration</li>
+          <li>Data & Reporting</li>
+          <li>Cloud & Infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="evidence-rule-bar">
+      <div class="rule-title">Dependency Rule</div>
+      <div class="rule-text">Cross-portfolio relationships are established only when evidence or an accountable owner supports them. Domains are metadata for organization, not barriers to connectivity.</div>
+    </div>
+
+    <footer>
+      <span>Source: adm/skill.md Section 3</span>
+      <span>3</span>
+    </footer>
+  </div>
+</body>
+</html>

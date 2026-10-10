@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
+
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; }
+    h3 { font-size: 20px; text-transform: uppercase; letter-spacing: 1px; color: #0F766E; margin-bottom: 24px; }
+
+    .column p { font-size: 18px; line-height: 1.6; margin-bottom: 24px; }
+
+    .sequence-block {
+      background: #E2E8F0;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .phase { display: flex; gap: 20px; align-items: flex-start; }
+    .phase-num {
+      background: #0F2537;
+      color: #FFFFFF;
+      min-width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .phase-info strong { display: block; font-size: 18px; margin-bottom: 4px; }
+    .phase-info span { font-size: 16px; color: #475569; }
+
+    .amber-box { border-left: 4px solid #D97706; padding-left: 20px; margin-top: 20px; }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Build a trusted CMDB foundation before ITSM scale</h2>
+    <div class="rule"></div>
+
+    <div class="content-grid">
+      <div class="column">
+        <h3>Target Outcome</h3>
+        <p>Establish a governed, evidence-backed inventory of applications, configuration items (CIs), and dependencies to enable robust change impact assessment and operational visibility.</p>
+
+        <div class="amber-box">
+          <p><strong>Option B Strategy (Now):</strong> Focus on stable logical application groups representing product responsibilities, independent of current engineering squad charts.</p>
+          <p><strong>Option C Roadmap (Progression):</strong> Evolve toward explicit support relationships and verified ownership as evidence becomes available.</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <h3>Strategic Sequencing</h3>
+        <div class="sequence-block">
+          <div class="phase">
+            <div class="phase-num">Q1</div>
+            <div class="phase-info">
+              <strong>CMDB & ADM Foundation</strong>
+              <span>Registry reconciliation, technical CI inventory, and initial dependency validation.</span>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-num" style="background: #0F766E;">Gate</div>
+            <div class="phase-info">
+              <strong>Readiness Checkpoint</strong>
+              <span>Verified application identities and critical hosting/runtime relationships.</span>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-num" style="background: #D97706;">Q2</div>
+            <div class="phase-info">
+              <strong>ITSM Readiness</strong>
+              <span>Design, configure, and pilot CMDB-linked workflows for Incident and Change.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Source: adm/skill.md Section 2</span>
+      <span>2</span>
+    </footer>
+  </div>
+</body>
+</html>

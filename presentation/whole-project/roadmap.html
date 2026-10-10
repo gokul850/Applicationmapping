@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
+
+    .timeline { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    .months { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 20px; }
+    .month-header {
+      background: #0F2537; color: white; padding: 12px; text-align: center;
+      font-weight: 700; font-size: 14px; text-transform: uppercase;
+    }
+
+    .phase-bar {
+      height: 48px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 16px; color: white; margin-bottom: 20px;
+    }
+    .cmdb-phase { grid-column: span 3; background: #0F766E; }
+    .itsm-phase { grid-column: span 3; background: #D97706; }
+
+    .task-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .task-cell {
+      background: white; border: 1px solid #CBD5E1; padding: 20px; font-size: 13px; line-height: 1.4;
+    }
+    .task-cell strong { display: block; color: #0F2537; margin-bottom: 8px; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; }
+
+    .gate-marker {
+      grid-column: span 6; display: flex; align-items: center; justify-content: center;
+      margin-top: 10px; padding: 10px; background: #E2E8F0; font-weight: 700; font-size: 14px; color: #0F2537;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Six months sequence CMDB/ADM first, ITSM second</h2>
+    <div class="rule"></div>
+
+    <div class="timeline">
+      <div class="months">
+        <div class="month-header">Month 1</div>
+        <div class="month-header">Month 2</div>
+        <div class="month-header">Month 3</div>
+        <div class="month-header">Month 4</div>
+        <div class="month-header">Month 5</div>
+        <div class="month-header">Month 6</div>
+      </div>
+
+      <div class="months" style="margin-bottom: 30px;">
+        <div class="phase-bar cmdb-phase">Q1: CMDB & ADM Foundation</div>
+        <div class="phase-bar itsm-phase">Q2: ITSM Design & Pilot</div>
+      </div>
+
+      <div class="task-grid">
+        <div class="task-cell"><strong>Design</strong>Catalogue sources, verify Device42 capabilities, and agree taxonomy.</div>
+        <div class="task-cell"><strong>Populate</strong>Reconcile registry, classify CIs, and build initial mappings.</div>
+        <div class="task-cell"><strong>Validate</strong>Review priority ADM edges and resolve identity conflicts.</div>
+        <div class="task-cell"><strong>Design</strong>Define service catalogue, support groups, and CI linking rules.</div>
+        <div class="task-cell"><strong>Pilot</strong>Configure workflows and associations in non-production.</div>
+        <div class="task-cell"><strong>Go-Live</strong>Launch core services and establish Hypercare period.</div>
+      </div>
+
+      <div class="gate-marker">Q1 Readiness Gate: Verified priority-scope foundation to support service onboarding</div>
+    </div>
+
+    <footer>
+      <span>Programme Roadmap: adm/skill.md Section 11</span>
+      <span>9</span>
+    </footer>
+  </div>
+</body>
+</html>

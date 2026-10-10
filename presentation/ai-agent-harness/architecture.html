@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      background: #F8F9FA;
+      color: #0F172A;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
+    header { border-top: 2px solid #0D9488; padding-top: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+    h2 { font-size: 30px; font-weight: 700; color: #0A192F; }
+    .draft-square { width: 6px; height: 6px; background: #D97706; }
+
+    .diagram-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .row { display: flex; gap: 40px; align-items: center; margin-bottom: 50px; }
+    .block {
+      width: 220px;
+      height: 100px;
+      border: 1px solid #CBD5E1;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      position: relative;
+    }
+    .block.policy { border: 2px solid #D97706; }
+    .block.human { border: 2px solid #0D9488; background: #F0FDFA; }
+    .block.adapter { background: #F1F5F9; }
+
+    .block strong { display: block; margin-bottom: 4px; color: #0A192F; }
+    .block i { margin-bottom: 8px; font-size: 20px; }
+
+    .arrow { font-size: 24px; color: #94A3B8; }
+
+    .boundary-line {
+      position: absolute;
+      width: 1000px;
+      border-top: 2px dashed #CBD5E1;
+      top: 62%;
+      z-index: 1;
+    }
+    .boundary-label {
+      position: absolute;
+      right: 100px;
+      top: 64%;
+      font-size: 12px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #64748B; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <header>
+      <h2>Reference Architecture</h2>
+      <div class="draft-square"></div>
+    </header>
+
+    <div class="diagram-container">
+      <div class="row">
+        <div class="block">
+          <i class="fas fa-user-circle"></i>
+          <strong>Human Request</strong>
+          <span>Run Manifest</span>
+        </div>
+        <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+        <div class="block policy">
+          <i class="fas fa-shield-halved"></i>
+          <strong>Policy Gate</strong>
+          <span>Hard Read-Only</span>
+        </div>
+        <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+        <div class="block adapter">
+          <i class="fas fa-database"></i>
+          <strong>Source Adapters</strong>
+          <span>Scoped Data Only</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="block">
+          <i class="fas fa-microchip"></i>
+          <strong>LLM Analysis</strong>
+          <span>Bounded Stage Agents</span>
+        </div>
+        <div class="arrow"><i class="fas fa-check-double"></i></div>
+        <div class="block">
+          <i class="fas fa-file-code"></i>
+          <strong>Validators</strong>
+          <span>Deterministic Checks</span>
+        </div>
+        <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+        <div class="block human">
+          <i class="fas fa-user-check"></i>
+          <strong>Human Review</strong>
+          <span>Decision & Exception</span>
+        </div>
+      </div>
+
+      <div class="boundary-line"></div>
+      <div class="boundary-label">Read-Only Proposal Boundary</div>
+
+      <div class="row" style="margin-bottom: 0;">
+        <div class="block" style="background: #F8FAFC;">
+          <i class="fas fa-file-export"></i>
+          <strong>Draft Output</strong>
+          <span>Validated Package</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Architecture Baseline: adm/implementation-plan.md</span>
+      <span>3</span>
+    </footer>
+  </div>
+</body>
+</html>

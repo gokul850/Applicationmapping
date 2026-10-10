@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
+
+    .diagram-area {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .concentric-viz {
+      position: relative;
+      width: 480px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .outer-ring {
+      width: 480px; height: 480px;
+      border: 2px solid #D97706;
+      border-radius: 50%;
+      position: absolute;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #D97706;
+    }
+
+    .middle-ring {
+      width: 320px; height: 320px;
+      border: 1px solid #0F2537;
+      border-radius: 50%;
+      position: absolute;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #0F2537;
+    }
+
+    .inner-core {
+      width: 180px; height: 180px;
+      background: #0F766E;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      z-index: 3;
+    }
+    .inner-core strong { font-size: 18px; display: block; margin-bottom: 8px; }
+    .inner-core span { font-size: 12px; opacity: 0.9; }
+
+    .info-panel h3 { font-size: 20px; color: #0F766E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
+    .panel-item { margin-bottom: 32px; }
+    .panel-item strong { display: block; font-size: 18px; margin-bottom: 8px; }
+    .panel-item p { font-size: 16px; color: #475569; line-height: 1.4; }
+    .panel-item strong span { color: #D97706; margin-left: 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #475569; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>AI assistance is a bounded layer within the human operating model</h2>
+    <div class="rule"></div>
+
+    <div class="diagram-area">
+      <div class="concentric-viz">
+        <div class="outer-ring">Human Review & Approval Boundary</div>
+        <div class="middle-ring">Deterministic Validators & Policy Gates</div>
+        <div class="inner-core">
+          <strong>AI Analysis Core</strong>
+          <span>Drafting & Pattern Discovery</span>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <h3>Harness Guardrails</h3>
+        <div class="panel-item">
+          <strong>Policy-First Orchestration</strong>
+          <p>Read-only source adapters and hard system boundaries prevent unauthorized production changes.</p>
+        </div>
+        <div class="panel-item">
+          <strong>Typed Contracts <span>Control</span></strong>
+          <p>Structured JSON output schemas and deterministic code-based checks ensure data integrity before human review.</p>
+        </div>
+        <div class="panel-item">
+          <strong>Evidence Preservation <span>Audit</span></strong>
+          <p>Every proposal retains source record IDs, confidence labels, and explicit exception markers.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Harness Architecture: adm/implementation-plan.md Section 3</span>
+      <span>6</span>
+    </footer>
+  </div>
+</body>
+</html>

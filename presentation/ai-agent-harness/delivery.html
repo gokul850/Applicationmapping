@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      background: #0A192F;
+      color: #F1F5F9;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
+    header { border-top: 2px solid #0D9488; padding-top: 20px; margin-bottom: 60px; display: flex; justify-content: space-between; }
+    h2 { font-size: 30px; font-weight: 700; color: #F8F9FA; }
+    .draft-square { width: 6px; height: 6px; background: #D97706; }
+
+    .content-area { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    h3 { font-size: 20px; color: #0D9488; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; }
+
+    .next-steps { list-style: none; }
+    .next-steps li {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #0D9488;
+      padding: 24px 30px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 20px;
+    }
+    .next-steps li i { color: #D97706; }
+
+    .status-badge {
+      margin-top: 40px;
+      padding: 12px 20px;
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px solid #D97706;
+      color: #D97706;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #F1F5F9; opacity: 0.6; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <header>
+      <h2>Draft configuration today; runtime next</h2>
+      <div class="draft-square"></div>
+    </header>
+
+    <div class="content-area">
+      <h3>Phase 1 Implementation</h3>
+      <ul class="next-steps">
+        <li>
+          <i class="fas fa-check-circle"></i>
+          <span>Committed 48 configuration and evaluation files to main</span>
+        </li>
+        <li>
+          <i class="fas fa-arrow-right"></i>
+          <span>Next: Build local/offline read-only assessment prototype</span>
+        </li>
+        <li>
+          <i class="fas fa-shield-alt"></i>
+          <span>Human review of reconciliation and dependency candidates</span>
+        </li>
+      </ul>
+      <div>
+        <div class="status-badge">Proposal-Only: No production changes authorized</div>
+      </div>
+    </div>
+
+    <footer>
+      <span>ADM Implementation Plan: Section 15</span>
+      <span>8</span>
+    </footer>
+  </div>
+</body>
+</html>

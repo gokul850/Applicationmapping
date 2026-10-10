@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      background: #F8F9FA;
+      color: #0F172A;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
+    header {
+      border-top: 2px solid #0D9488;
+      padding-top: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    h2 { font-size: 30px; font-weight: 700; color: #0A192F; }
+    .draft-square { width: 6px; height: 6px; background: #D97706; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      flex: 1;
+    }
+
+    h3 { font-size: 20px; color: #0D9488; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+
+    .section-left p {
+      font-size: 19px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .policy-box {
+      border-left: 4px solid #0D9488;
+      padding: 20px 0 20px 24px;
+      background: #F1F5F9;
+    }
+    .policy-box strong { color: #0A192F; }
+
+    .principles-list { list-style: none; }
+    .principles-list li {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 22px;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    .principles-list li i { color: #D97706; margin-top: 4px; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #64748B;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <header>
+      <h2>Mission and Non-negotiables</h2>
+      <div class="draft-square"></div>
+    </header>
+
+    <div class="content-grid">
+      <div class="section-left">
+        <h3>Objective</h3>
+        <p>Transform the organization's existing registry, Azure resources, and on-premises inventory into an evidence-based, governed model in <strong>Device42</strong>.</p>
+        <div class="policy-box">
+          <p><strong>Option B Strategy:</strong> Deploy stable logical application groups representing product responsibilities, moving progressively toward Option C ownership.</p>
+        </div>
+      </div>
+
+      <div class="section-right">
+        <h3>Non-Negotiable Principles</h3>
+        <ul class="principles-list">
+          <li><i class="fas fa-shield-alt"></i> <span><strong>Policy Before Autonomy:</strong> Hard read-only boundaries outside the prompt. Prompt text is not a security control.</span></li>
+          <li><i class="fas fa-link"></i> <span><strong>Evidence-Led ADM:</strong> One connected dependency graph. Links require traceable evidence, never inferred from shared infrastructure.</span></li>
+          <li><i class="fas fa-user-check"></i> <span><strong>Human Authority:</strong> No production changes, merges, or deletions without explicit human approval.</span></li>
+          <li><i class="fas fa-file-contract"></i> <span><strong>Preserve Provenance:</strong> Original source IDs, aliases, and uncertainty must be visible in every proposal.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <span>Source: adm/skill.md</span>
+      <span>2</span>
+    </footer>
+  </div>
+</body>
+</html>

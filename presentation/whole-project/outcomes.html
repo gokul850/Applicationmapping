@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #0F2537; color: #FFFFFF; }
+    .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; color: #FFFFFF; }
+    .rule { height: 2px; background: #FFFFFF; margin-bottom: 60px; opacity: 0.3; }
+
+    .outcome-grid { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+    .outcome-panel {
+      border-left: 4px solid #0F766E;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .outcome-panel.gate { border-color: #D97706; }
+
+    h3 { font-size: 18px; color: #0F766E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+    .gate h3 { color: #D97706; }
+
+    ul { list-style: none; flex: 1; }
+    li { font-size: 16px; margin-bottom: 16px; opacity: 0.9; line-height: 1.4; padding-left: 24px; position: relative; }
+    li::before { content: "→"; position: absolute; left: 0; color: #0F766E; font-weight: 700; }
+    .gate li::before { color: #D97706; }
+
+    .status-badge {
+      margin-top: 40px;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+      font-size: 18px;
+      color: #0F766E;
+      display: inline-block;
+    }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #94A3B8; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <h2>Success means trusted evidence, controlled operations, and a safe next step</h2>
+    <div class="rule"></div>
+
+    <div class="outcome-grid">
+      <div class="outcome-panel">
+        <h3>Quality Measures</h3>
+        <ul>
+          <li>% In-scope apps with canonical identity and domain assignment.</li>
+          <li>% Priority apps mapped to confirmed hosting/runtime CIs.</li>
+          <li>% Critical dependencies supported by evidence.</li>
+        </ul>
+      </div>
+
+      <div class="outcome-panel">
+        <h3>Current Status</h3>
+        <ul>
+          <li>Committed 48 AI agent harness configuration files.</li>
+          <li>Established 20 JSON schemas and 4 YAML workflows.</li>
+          <li>Completed Human Delivery Approach and implementation plan.</li>
+        </ul>
+      </div>
+
+      <div class="outcome-panel gate">
+        <h3>Immediate Next Step</h3>
+        <ul>
+          <li><strong>G0 Mobilisation:</strong> Confirm sponsors, domain representatives, and priority scope.</li>
+          <li>Acquire first approved read-only source exports.</li>
+          <li>Build read-only source-assessment prototype.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="status-badge">Phase 1: Draft Configuration & Implementation Plan Complete</div>
+    </div>
+
+    <footer>
+      <span>ADM Implementation: adm/implementation-plan.md</span>
+      <span>10</span>
+    </footer>
+  </div>
+</body>
+</html>

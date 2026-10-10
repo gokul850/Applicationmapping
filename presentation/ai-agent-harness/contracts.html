@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; }
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      background: #F8F9FA;
+      color: #0F172A;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+    }
+    header { border-top: 2px solid #0D9488; padding-top: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; }
+    h2 { font-size: 30px; font-weight: 700; color: #0A192F; }
+    .draft-square { width: 6px; height: 6px; background: #D97706; }
+
+    .content-area { flex: 1; display: grid; grid-template-rows: 1.5fr 1fr; gap: 40px; }
+
+    .contract-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .contract-card {
+      border: 1px solid #CBD5E1;
+      background: white;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contract-card i { color: #0D9488; font-size: 24px; }
+    .contract-card h3 { font-size: 18px; color: #0A192F; }
+    .contract-card p { font-size: 14px; line-height: 1.4; color: #64748B; }
+
+    .bottom-points {
+      background: #0A192F;
+      color: white;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    .point { display: flex; gap: 16px; align-items: flex-start; }
+    .point i { color: #D97706; margin-top: 4px; }
+    .point-text h4 { font-size: 16px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; color: #0D9488; }
+    .point-text p { font-size: 14px; line-height: 1.5; opacity: 0.9; }
+
+    footer { display: flex; justify-content: space-between; font-size: 12px; color: #64748B; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <header>
+      <h2>Contracts make the harness testable</h2>
+      <div class="draft-square"></div>
+    </header>
+
+    <div class="content-area">
+      <div class="contract-grid">
+        <div class="contract-card">
+          <i class="fas fa-file-signature"></i>
+          <h3>Typed JSON Schemas</h3>
+          <p>20 versioned contracts covering Run Manifests, Application/CI records, Evidence, and Decisions.</p>
+        </div>
+        <div class="contract-card">
+          <i class="fas fa-terminal"></i>
+          <h3>Bounded Workflows</h3>
+          <p>YAML-defined tasks with strictly declared inputs, tool allow-lists, and human review gates.</p>
+        </div>
+        <div class="contract-card">
+          <i class="fas fa-comment-dots"></i>
+          <h3>Structured Prompts</h3>
+          <p>Task-specific templates that treat inputs as untrusted data and require valid JSON output.</p>
+        </div>
+      </div>
+
+      <div class="bottom-points">
+        <div class="point">
+          <i class="fas fa-vial"></i>
+          <div class="point-text">
+            <h4>Risk-Based Evaluation</h4>
+            <p>10 synthetic regression scenarios covering similar names, unknown owners, and false dependency signals.</p>
+          </div>
+        </div>
+        <div class="point">
+          <i class="fas fa-history"></i>
+          <div class="point-text">
+            <h4>Versioned Provenance</h4>
+            <p>Every run pins the skill, policy, schema, code, and model versions for complete reproducibility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Contract Inventory: adm/harness/contracts/</span>
+      <span>6</span>
+    </footer>
+  </div>
+</body>
+</html>
