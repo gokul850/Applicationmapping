@@ -57,14 +57,15 @@ Option C attributes should include:
 
 Unknown ownership must not block the initial inventory. Record it as Unassigned or Unknown and track it in an ownership-gap register.
 
-2.2 CMDB first, ITSM second
+2.2 Foundation first, ITSM second
 
 The delivery sequence is:
 
-* Q1, Months 1–3: CMDB foundation, application reconciliation, technical CI inventory, initial ADM and validation.
-* Q2, Months 4–6: ITSM design, configuration, pilot, rollout and stabilisation using the CMDB.
+* **Phase 1: Application-Resource Matrix (Month 1-2).** Establish a trusted registry reconciled against cloud and on-premises technical CIs.
+* **Phase 2: Business Service Mapping (Month 2-3).** Map logical business services to applications and technical dependencies to enable service-impact visibility.
+* **Q2, Months 4–6: ITSM rollout.** Design, configure, and pilot ITSM processes using the CMDB foundation.
 
-ITSM process design can begin in parallel during Q1. However, production ITSM onboarding must pass an agreed CMDB readiness gate.
+ITSM process design can begin in parallel during Q1. However, production ITSM onboarding must pass the foundation readiness gate.
 
 2.3 One connected ADM graph
 
@@ -187,8 +188,9 @@ Distinguish the following concepts:
 * Queue or messaging component
 * Infrastructure CI
 * Environment
-* Deployment or application instance
+* Deployment instance
 * Consumer
+* Business support relationship
 * Dependency relationship
 * Ownership and support relationship
 
@@ -458,22 +460,21 @@ Stage 3 — Classify technical CIs
 * Map resources to applications only when supported by evidence.
 * Flag ambiguous mappings for review.
 
-Deliverables: Technical CI inventory and application-to-CI mapping candidates.
+Deliverables: Technical CI inventory and application-to-resource matrix.
 
-Stage 4 — Discover dependencies
+Stage 4 — Phase 2: Map Business Services
 
-* Combine infrastructure, deployment, API, configuration, monitoring, network and owner evidence.
-* Create candidate relationships with evidence and confidence.
-* Identify contradictions and environment mismatches.
-* Prioritise high-impact relationships for validation.
+* Map logical business services to the canonical application registry.
+* Define business-to-application support relationships.
+* Trace service dependencies through the application-to-resource matrix.
 
-Deliverables: Relationship register, dependency graph and unresolved relationship queue.
+Deliverables: Business service catalogue and service-to-application mappings.
 
-Stage 5 — Validate ADM
+Stage 5 — Discover and Validate ADM
 
-* Validate priority applications with business and technical representatives.
-* Validate critical inbound and outbound dependencies.
-* Test representative change-impact scenarios.
+* Combine deployment, API, monitoring, and network evidence to discover application-to-application dependencies.
+* Prioritise validation of critical service-delivery paths.
+* Test service-impact scenarios for priority business services.
 * Document gaps in coverage and confidence.
 * Avoid claiming complete dependency coverage unless the evidence supports that conclusion.
 
@@ -535,7 +536,7 @@ Deliverables: Service catalogue, workflow design, CI association rules, integrat
 
 11. Six-month roadmap
 
-Q1 — Months 1–3: CMDB and ADM
+Phase 1 — Months 1–2: Application-Resource Matrix
 
 Month 1: Design
 
@@ -548,24 +549,25 @@ Month 1: Design
 Month 2: Populate
 
 * Reconcile the application registry.
-* Classify Azure and on-premises resources.
+* Map registry applications to hosting resources (Application-Resource Matrix).
 * Establish the product groups and names.
 * Build initial application-to-CI mappings.
-* Create candidate dependencies.
 
-Month 3: Validate
+Phase 2 — Month 3: Business Service Mapping
 
-* Validate priority applications and critical dependencies.
-* Resolve high-impact identity conflicts.
+Month 3: Service Validation
+
+* Map business services to applications and dependencies.
+* Validate critical service delivery paths.
 * Publish quality, coverage and ownership-gap reports.
 * Document CMDB operating procedures.
 * Demonstrate evidence-backed change-impact analysis.
 
-Q1 readiness gate: The agreed priority scope contains sufficiently reliable application identities, technical CI mappings, environments, critical relationships and documented gaps to support service onboarding and change-impact assessment.
+Foundation readiness gate: The priority scope contains reliable application-resource mappings and business service definitions to support service onboarding.
 
 Do not use CI count alone as a readiness measure.
 
-Q2 — Months 4–6: ITSM
+Q2 — Months 4–6: ITSM rollout
 
 Month 4: Design
 
@@ -590,9 +592,9 @@ Month 6: Go-live and stabilise
 
 Option C evolution
 
-* During Q1, capture owners where known.
+* During Phase 1-2, capture owners where known.
 * During Q2, use service onboarding and ITSM workflows to improve ownership and support metadata.
-* By the end of Q2, aim for a governed Option B CMDB, validated priority-scope ADM, core ITSM services live, and a prioritised plan for closing Option C ownership gaps.
+* By the end of Q2, aim for a governed Option B CMDB with service mappings, core ITSM services live, and a prioritised plan for Option C.
 
 12. CMDB quality measures
 
@@ -731,11 +733,13 @@ Reconcile records using strong identifiers first. Preserve provenance, distingui
 
 Prepare Device42 import mappings only after verifying the target version’s supported schema. Identify the highest-value validation tasks for Q1 CMDB readiness and the prerequisites for Q2 ITSM rollout.
 
+Ensure Phase 1 and 2 evidence is captured before Q2 ITSM configuration begins.
+
 Finish by presenting the findings, generated artefacts, unresolved decisions, risks and next safe action. Obtain explicit human approval before any live import, destructive change or production modification.
 
 18. Non-negotiable principles
 
-* CMDB first; ITSM second.
+* Foundation first; ITSM second.
 * Roadmap from product groups to Option C.
 * Maintain one connected ADM dependency graph.
 * Keep product groups independent of current engineering teams.

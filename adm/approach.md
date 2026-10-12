@@ -3,25 +3,29 @@
 **Status:** Proposed approach
 **Source of truth:** [`skill.md`](./skill.md)
 **Audience:** Executive sponsor, portfolio and application owners, CMDB/platform team, infrastructure and operations teams, ITSM process owners, security, and delivery leads
-**Planning horizon:** Six months, consistent with the skill’s Q1 CMDB/ADM then Q2 ITSM sequence. Confirm calendar dates, scope, capacity, and thresholds during mobilisation.
+**Planning horizon:** Six months. Phase 1 (App-Resource) Month 1-2; Phase 2 (Business Service) Month 3; Q2 ITSM rollout. Confirm calendar dates, scope, capacity, and thresholds during mobilisation.
 
 ## 1. Executive summary
 
 Establish a governed, evidence-backed inventory of applications, technical configuration items (CIs), deployments, and dependencies before onboarding ITSM processes to the CMDB. Start with **Option B**: stable logical product groups that reflect product responsibility, not current teams or reporting lines. Capture known ownership now, record unknown ownership explicitly, and close gaps progressively toward **Option C**.
 
-The programme is not a bulk-import exercise. It is a staged reconciliation and validation effort that preserves source identifiers, provenance, uncertainty, and exceptions. Device42 is the target platform, subject to validating the installed version, supported CI and relationship types, import schemas, integration options, and operational fit. No production data is changed until a named approver accepts a documented change package.
+The programme is delivered in two foundation phases followed by ITSM rollout:
+- **Phase 1: Application-Resource Matrix.** Reconcile the application registry against Azure and on-premises technical resources.
+- **Phase 2: Business Service Mapping.** Define logical business services and map their support relationships to the Phase 1 matrix.
 
-The six-month outcome is a governed Option B CMDB, a validated priority-scope ADM graph, evidence-backed change-impact examples, core ITSM services onboarded only after a readiness gate, and a prioritised ownership roadmap.
+Device42 is the target platform, subject to validating the installed version, supported CI and relationship types, import schemas, integration options, and operational fit. No production data is changed until a named approver accepts a documented change package.
+
+The six-month outcome is a governed Option B CMDB with an Application-Resource matrix and Business Service mappings, evidence-backed change-impact examples, core ITSM services live, and a prioritised ownership roadmap.
 
 ## 2. Outcomes and measures of success
 
 ### 2.1 Outcomes
 
 1. A reconciled canonical application register with preserved source IDs and aliases.
-2. A useful, scoped technical CI inventory spanning approved Azure and on-premises sources.
-3. Traceable application-to-deployment/CI mappings and dependency relationships.
-4. A single connected ADM graph across all Product Groups; group values organise the graph but do not split it into disconnected maps.
-5. Priority applications and critical relationships validated by accountable business and technical representatives.
+2. A Phase 1 Application-Resource matrix reconciled against Azure and on-premises sources.
+3. A Phase 2 Business Service inventory mapped to applications and technical dependencies.
+4. A single connected ADM graph organized by Product Groups with traceable service-to-resource paths.
+5. Priority service-delivery paths validated by business and technical representatives.
 6. A repeatable CMDB operating model: field ownership, refresh, stewardship, exception handling, and audit trail.
 7. ITSM process and integration readiness established against the CMDB, with production onboarding gated by agreed evidence.
 
@@ -30,8 +34,8 @@ The six-month outcome is a governed Option B CMDB, a validated priority-scope AD
 Agree denominators, priority scope, freshness windows, and thresholds with stakeholders before reporting. Report scope, numerator, denominator, extraction date, source, and limitations with every metric. Candidate measures from the skill include:
 
 - In-scope applications with canonical identity, validated product group and product name, environment, and lifecycle status.
-- Priority applications mapped to confirmed runtime/hosting CIs.
-- Critical dependencies with evidence and owner/technical validation.
+- Priority applications mapped to resources in the Phase 1 Matrix.
+- Business services mapped to applications and infrastructure in Phase 2.
 - Duplicate candidates, unresolved conflicts, unmapped resources, and ownership gaps, including age and disposition.
 - In-scope records within the agreed freshness window.
 - Import/reconciliation exception rate and owner-attestation completion.
@@ -41,7 +45,7 @@ Do not set target percentages or claim readiness solely from CI counts until sco
 
 ## 3. Non-negotiable principles
 
-- **CMDB first; ITSM second.** ITSM design may proceed in parallel, but production onboarding must pass the CMDB readiness gate.
+- **Foundation first; ITSM second.** Complete Phase 1 & 2 foundations before production ITSM rollout. ITSM design may proceed in parallel, but production onboarding must pass the foundation readiness gate.
 - **Option B now; Option C progressively.** Product groups are durable logical responsibilities, independent of team charts. Unknown ownership is recorded as `Unassigned` or `Unknown` and tracked, not fabricated or used to block inventory.
 - **One connected dependency graph.** Create cross-portfolio links only when evidence or an accountable owner supports them.
 - **Evidence over inference.** A shared resource group, subscription, network, repository, or technology stack does not prove an application or runtime dependency. Name similarity alone does not justify merging.
@@ -69,7 +73,7 @@ Do not set target percentages or claim readiness solely from CI counts until sco
 - Automatic merge or overwrite of ambiguous records.
 - Retrieval, processing, or export of secret values.
 - Claims of complete dependency coverage without sufficient evidence.
-- Treating the initial four domains/groups as immutable if business owners later approve a governed taxonomy change.
+- Treating the initial groups as immutable if business owners later approve a governed taxonomy change.
 
 ## 5. Governance and decision rights
 
@@ -96,15 +100,16 @@ Run five coordinated workstreams with a single delivery lead and shared decision
 
 1. **Source and data governance:** inventory inputs, document extraction/freshness/sensitivity, set source precedence, establish stewardship.
 2. **Application portfolio and taxonomy:** agree canonical identity rules, product groups, product names, controlled values, owner-gap process.
-3. **Technical inventory and ADM:** classify in-scope Azure/on-premises resources, map applications to deployments/CIs, propose evidence-backed dependencies, validate high-impact paths.
-4. **Device42 and CMDB operations:** validate version/schema/import approach, create repeatable mapping and dry-run checks, define refresh, reconciliation, and recovery procedures.
-5. **ITSM readiness and adoption:** define service catalogue/processes in parallel, validate CMDB dependencies and integration, pilot ticket/change-to-CI workflows only after the readiness gate.
+3. **Phase 1 — Technical Inventory:** classify Azure/on-prem resources and build the Application-Resource matrix.
+4. **Phase 2 — Service Mapping:** define business services and map support relationships to the application registry.
+5. **Device42 and CMDB operations:** validate version/schema/import approach, create repeatable mapping and dry-run checks, define refresh, reconciliation, and recovery procedures.
+6. **ITSM readiness and adoption:** define service catalogue/processes in parallel, validate CMDB dependencies and integration, pilot ticket/change-to-CI workflows only after the foundation readiness gate.
 
 Each workstream uses a reviewable cycle: **collect → catalogue → analyse → propose → validate → approve → update artefacts → report**. Early stages are read-only. Every output labels confirmed facts, probable findings, candidates, unknowns, exclusions, assumptions, and the next owner/action.
 
 ## 7. Six-month implementation roadmap
 
-### Mobilisation (Weeks 1–2; overlaps Month 1)
+### Mobilisation (Weeks 1-2)
 
 - Confirm sponsor, accountable roles, priority scope, environments, access boundaries, source custodians, and security/data-handling rules.
 - Confirm whether Device42 and ITSM versions/environments are accessible for read-only validation.
@@ -113,7 +118,7 @@ Each workstream uses a reviewable cycle: **collect → catalogue → analyse →
 
 **Exit:** signed scope/boundaries, named decision owners, approved read-only source plan, initial RAID and decision logs.
 
-### Month 1 — Design and source assessment
+### Month 1 — Phase 1 Design
 
 - Catalogue available inputs; inspect schemas, keys, record counts, extraction dates, data sensitivity, and source limitations.
 - Agree canonical field definitions, source-of-record precedence, controlled values, identity/matching rules, confidence/status definitions, and evidence minimums.
@@ -123,26 +128,26 @@ Each workstream uses a reviewable cycle: **collect → catalogue → analyse →
 
 **Exit:** source catalogue/data dictionary, taxonomy/mapping proposal, Device42 capability report, decisions/assumptions, data-quality baseline.
 
-### Month 2 — Reconcile and classify
+### Month 2 — Phase 1 Execution
 
-- Reconcile the application registry to infrastructure and supporting sources using strong identifiers first.
-- Preserve source IDs/names and aliases; queue duplicates/conflicts rather than forcing merges.
-- Classify scoped Azure and on-premises resources; record environment and deployment context where evidence supports it.
-- Produce application-to-CI candidates, unmapped-resource queue, owner-gap register, and confidence/provenance.
+- Build the Application-Resource Matrix using strong identifiers to link registry items to infrastructure.
+- Classify Azure and on-premises resources; identify unmapped technical resources.
+- Produce Phase 1 artifacts: canonical application registry and resource inventory.
 - Review priority records with portfolio and technical representatives.
 
 **Exit:** reviewed canonical application and CI inventories for agreed scope; exception queues have owners and next actions.
 
-### Month 3 — Validate priority ADM and CMDB readiness
+### Month 3 — Phase 2 Service Mapping
 
-- Build the relationship register and graph from configuration, deployment, API, monitoring, network-flow, DNS, database/queue metadata, and owner confirmation where available.
-- Prioritise validation by criticality, impact, evidence gaps, and cross-portfolio significance.
+- Map business services to applications and technical dependencies.
+- Conduct service-delivery validation sessions with business representatives.
+- Finalise the relationship register and single connected graph.
 - Conduct structured business/technical validation sessions and record decisions.
 - Test representative change-impact scenarios; document coverage limits and unknowns.
-- Prepare Device42-mapped sample/import files only after schema validation; validate keys, references, enums, mandatory fields, environments, and duplicates; run non-production/dry-run where available.
+- Prepare Device42-mapped sample/import files only after schema validation.
 - Publish readiness evidence, risks, recovery notes, and open approval items.
 
-**Q1 CMDB/ADM readiness gate:** Sponsor and accountable owners accept that the agreed priority scope has sufficiently reliable identities, CI mappings, environments, critical relationships, controlled gaps, and tested change-impact scenarios to support service onboarding. CI volume alone is not evidence of readiness. Failure to meet the gate means defer onboarding and remediate named gaps.
+**Foundation readiness gate:** Accept that Phase 1 & 2 provide a trusted foundation for service onboarding. CI volume alone is not evidence of readiness. Failure to meet the gate means defer onboarding and remediate named gaps.
 
 ### Month 4 — ITSM design
 
@@ -177,16 +182,17 @@ Each workstream uses a reviewable cycle: **collect → catalogue → analyse →
 |---|---|---|
 | G0 — Mobilisation | Scope, owners, data/access boundaries, source plan, decision rights | Start read-only discovery |
 | G1 — Model and target fit | Source catalogue, taxonomy, field map, Device42 version/schema/capability evidence | Approve reconciliation and prototype mappings |
-| G2 — Priority ADM validation | Canonical identities, CI mappings, relationship evidence, review outcomes, quality/coverage, change-impact tests | Accept or remediate Q1 readiness |
-| G3 — Import package approval | Exact target schema validation, sample/dry-run results, change set, impact analysis, backup/recovery, approver | Approve a specific production import or decline/defer |
-| G4 — ITSM pilot approval | CMDB readiness, integration test, UAT, security, operating model, rollback | Authorise bounded pilot |
-| G5 — Rollout approval | Pilot outcomes, resolved critical defects, support/training, monitoring, rollback and change record | Authorise specific production rollout |
+| G2 — Phase 1 Matrix | Canonical identities, CI mappings, resource inventory, review outcomes | Accept Phase 1 Foundation |
+| G3 — Phase 2 Service Map | Business service definitions, app-to-service links, graph evidence | Accept Phase 2 Readiness |
+| G4 — Import approval | Exact target schema validation, sample/dry-run results, change set, backup/recovery, approver | Approve a specific production import |
+| G5 — ITSM pilot approval | CMDB readiness, integration test, UAT, security, operating model, rollback | Authorise bounded pilot |
+| G6 — Rollout approval | Pilot outcomes, resolved critical defects, support/training, monitoring, rollback | Authorise production rollout |
 
 An approval is specific to the reviewed package and scope. Any material change to records, schema, environment, or impact requires a new review.
 
 ## 9. Core artefacts and operating cadence
 
-Maintain skill-required artefacts as separate versioned files where appropriate: `source_catalogue.csv`, canonical application inventory, technical CI inventory, relationship register, duplicate candidates, unmapped resources, owner-gap register, data-quality report, Device42 field mapping/import validation, decision log, risk/issue register, CMDB operating runbook, and ITSM readiness plan. Do not create empty files merely to imply completion.
+Maintain skill-required artefacts as separate versioned files where appropriate: `source_catalogue.csv`, canonical application inventory, technical CI inventory, relationship register, duplicate candidates, unmapped resources, owner-gap register, data-quality report, device42_field_mapping.md, device42_import_validation.md, decision_log.csv, risk_and_issue_register.csv, cmdb_operating_runbook.md, and itsm_readiness_plan.md.
 
 Every artefact states inputs/extraction dates, scope/assumptions, confirmed vs inferred/candidate information, exclusions, validation status, next action, and required approver. CSVs use UTF-8, one header row, stable IDs, consistent controlled values, valid escaping, no secrets, and documented blank-value semantics.
 
@@ -196,23 +202,23 @@ Suggested cadence: weekly workstream review; fortnightly cross-workstream decisi
 
 | Risk | Response |
 |---|---|
-| Missing, stale, or inaccessible source data | Catalogue actual availability and freshness; narrow scope transparently; assign source-owner action; do not claim unseen data was reviewed. |
-| Ambiguous identities create false merges | Prefer authoritative IDs; preserve originals; queue weak/fuzzy matches; require owner review for merge decisions. |
-| Incomplete dependencies create misleading change impact | Label coverage and confidence; use multiple evidence types; validate critical paths; never claim completeness without evidence. |
-| Taxonomy follows today’s org chart | Keep logical groups product/service based; govern taxonomy changes; do not rename groups for transient squad changes. |
-| Device42 schema/integration assumptions prove false | Verify exact version and templates early; test in non-production; keep canonical model independent of native target fields. |
-| ITSM launch outruns CMDB readiness | Enforce Q1 readiness gate; defer production onboarding when evidence or operating controls are insufficient. |
-| Owner gaps persist | Track explicit owner-gap register; use Q2 workflows and attestations to improve Option C coverage. |
-| Sensitive configuration enters artefacts | Read metadata only; exclude secrets; redact evidence; apply access/retention controls and review. |
-| One-time imports create drift | Define authoritative source per field, refresh cadence, exception routing, reconciliation, audit and ongoing stewardship. |
+| Missing source data | Catalogue actual availability; narrow scope transparently; do not claim unseen data was reviewed. |
+| Ambiguous identities | Prefer authoritative IDs; queue weak/fuzzy matches; require owner review for merge decisions. |
+| Incomplete dependencies | Label coverage and confidence; use multiple evidence types; never claim completeness without evidence. |
+| Taxonomy shift | Keep logical groups product based; govern taxonomy changes; do not rename groups for transient squad changes. |
+| Target fit assumptions | Verify exact version and templates early; test in non-production; keep canonical model independent. |
+| Foundation gaps | Enforce readiness gates; defer onboarding when Phase 1/2 evidence is insufficient. |
+| Service ambiguity | Require owner validation for Phase 2 service links. |
+| Sensitive configuration | Read metadata only; exclude secrets; redact evidence; apply access/retention controls. |
+| One-time imports | Define authoritative source per field, refresh cadence, exception routing, audit and ongoing stewardship. |
 
 ## 11. Immediate next actions
 
 1. Appoint the sponsor, delivery lead, CMDB/data owner, business product representatives, technical/platform leads, security contact, and ITSM process owner.
-2. Confirm the first priority scope (applications/services and environments) and the source custodians; do not set arbitrary completeness thresholds.
+2. Confirm the first priority scope (applications/services and environments) and the source custodians.
 3. Request/locate approved read-only exports and record their extraction dates, owners, sensitivity, and handling constraints.
 4. Validate Device42 and ITSM versions, non-production access, supported templates, and integration evidence.
 5. Hold a product group and name taxonomy workshop and publish decisions and open questions.
 6. Establish the artefact repository, access controls, review cadence, and the G0/G1 approval path.
 
-**First safe delivery step:** complete Stage 0 source discovery and catalogue using only approved read-only inputs; make no production changes.
+**First safe delivery step:** initiate Phase 1 source profiling and catalogue using read-only inputs.

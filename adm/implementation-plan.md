@@ -4,11 +4,11 @@
 **Source of truth:** [`skill.md`](./skill.md)
 **Operating model:** [`approach.md`](./approach.md)
 **Audience:** Agent/platform engineers, data and CMDB owners, security, QA/evaluation, and human approvers
-**Planning horizon:** Six months, consistent with the skill’s Q1 CMDB/ADM then Q2 ITSM sequence. Confirm calendar dates, scope, capacity, and thresholds during mobilisation.
+**Planning horizon:** Six months. Phase 1 (App-Resource) Month 1-2; Phase 2 (Business Service) Month 3; Q2 ITSM rollout. Confirm calendar dates, scope, capacity, and thresholds during mobilisation.
 
 ## 1. Purpose and scope
 
-Implement a governed AI-agent harness that can assist with the skill’s CMDB-first ADM work: source cataloguing, data-quality analysis, application/CI reconciliation, candidate dependency discovery, evidence packaging, and target-schema validation. The harness should generate reviewable proposals and traceable artefacts. It must not autonomously alter Azure, on-premises, Device42, or ITSM production data.
+Implement a governed AI-agent harness that can assist with Phase 1 (Application-Resource Matrix) and Phase 2 (Business Service Mapping) discovery. The harness should generate reviewable proposals and traceable artefacts. It must not autonomously alter Azure, on-premises, Device42, or ITSM production data.
 
 This plan covers two related lifecycles:
 
@@ -98,9 +98,10 @@ adm/
       02-taxonomy-and-mapping.md           # controlled values and target mapping
       03-application-reconciliation.md     # identity resolution and exception flow
       04-ci-classification.md              # CI/deployment classification
-      05-dependency-discovery.md           # evidence-backed candidate graph
-      06-device42-preflight.md             # target-version validation and dry run
-      07-quality-report.md                 # coverage, data quality, risk and next action
+      05-service-mapping.md                # Phase 2: business service to application
+      06-dependency-discovery.md           # evidence-backed candidate graph
+      07-device42-preflight.md             # target-version validation and dry run
+      08-quality-report.md                 # coverage, data quality, risk and next action
     evaluations/
       test-plan.md                         # risk-based eval design and release thresholds
       scenarios.yaml                      # privacy-safe cases and expected decisions
@@ -135,6 +136,7 @@ Prefer one orchestrator plus narrow, typed steps over many autonomous agents wit
 | Taxonomy assistant | Suggest product group/name and controlled values with evidence/rationale | Invent an application or force unknown records into a group |
 | Reconciliation assistant | Generate identity candidates using declared key priority and corroborating evidence | Merge/delete/update source records; merge on fuzzy/name match alone |
 | CI classifier | Suggest logical CI class and deployment/environment links | Treat resource group/repository/VM as an application without evidence |
+| Service mapper | Suggest business service links and support relationships | Invent a business service or force one-to-one mapping without evidence |
 | Dependency assistant | Propose typed candidate relationships with evidence and confidence | Assert runtime dependencies from shared network/subscription or repository reference alone |
 | Device42 preflight | Compare canonical fields with verified version-specific templates and validate exports | Call a file import-ready without target validation or perform a live import |
 | Reporter | Summarize confirmed/probable/candidate/unknown, gaps, artefacts, decisions, next safe step | Conceal exceptions or claim completeness unsupported by evidence |
@@ -256,7 +258,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 - Version any change to `skill.md`; migrate schema and prompt fixtures deliberately; maintain backward compatibility or documented migrations.
 - Treat write-capability as a separate gated programme increment, not a configuration toggle.
 
-## 8. AI workflow lifecycle and human checkpoints
+## 8. ADM Workflow lifecycle and human checkpoints
 
 | Workflow stage | Agent output | Required human checkpoint |
 |---|---|---|
@@ -264,7 +266,8 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 | Source assessment | Catalogue, schemas, counts, freshness and data-quality notes | Source owner confirms intended source/scope and limitations |
 | Taxonomy/mapping | Proposed product group/name and target-field mappings | Business/product steward confirms ambiguous classifications and controlled values |
 | Reconciliation | Canonical candidates, duplicate/conflict queues, field provenance | Owners decide merge, conflict resolution, identity and ownership assertions |
-| CI/deployment mapping | Candidate application-to-CI links and classifications | Technical/platform owner validates material mappings |
+| CI/deployment mapping | Phase 1: Candidate application-to-resource links | Technical/platform owner validates material mappings |
+| Service mapping | Phase 2: Candidate business service definitions and links | Business steward confirms service-to-application support links |
 | Dependency discovery | Candidate graph edges with evidence/confidence | Technical and business owners validate critical/high-impact edges |
 | Device42 preflight | Version-specific mapping, validation/dry-run, exceptions | Platform owner confirms schema; change authority separately approves any import |
 | ITSM readiness | Integration/process evidence, UAT, gaps | ITSM owner and sponsor accept readiness; separate change approval for go-live |
@@ -302,4 +305,4 @@ The agent may continue safe, reversible analysis where a low-risk question is un
 2. **Infrastructure:** identify an approved, isolated compute and storage environment for Phase 2 prototype.
 3. **Data access:** agree the approval route and format for the Phase 0 read-only exports.
 4. **Metrics:** agree how to measure utility and performance before the Phase 4 pilot.
-5. **Ownership:** identify the permanent Product steward and Security approver.
+5. **Ownership:** Who is the Phase 1 Resource owner vs the Phase 2 Service owner?
