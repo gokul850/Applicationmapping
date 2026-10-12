@@ -5,102 +5,114 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; }
-    .slide-container { width: 1280px; height: 720px; padding: 36px; display: flex; flex-direction: column; }
-    h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
-    .rule { height: 2px; background: #0F2537; margin-bottom: 24px; }
-
-    .portfolio-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 20px;
-      min-height: 0;
+    html,body { height: 100%; }
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #F8F9FA; color: #0F2537; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .slide-container { width: 1280px; height: 720px; padding: 32px; display: flex; flex-direction: column; background: transparent; }
+    h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; line-height: 1.1; }
+    .rule { height: 2px; background: #0F2537; margin-bottom: 12px; border-radius: 1px; }
+    
+    .portfolio-grid { 
+      flex: 1; 
+      min-height: 0; /* allow flex children to shrink */
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      grid-auto-rows: 1fr;
+      gap: 12px; 
     }
-
-    .portfolio-card {
-      border: 1px solid #CBD5E1;
-      padding: 20px;
+    
+    .portfolio-card { 
+      border: 1px solid #CBD5E1; 
+      padding: 10px; 
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 6px;
     }
-    .portfolio-card h3 { font-size: 18px; color: #0F766E; text-transform: uppercase; letter-spacing: 1px; }
-    .portfolio-card p { font-size: 14px; line-height: 1.3; color: #475569; }
-    .portfolio-card ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
-    .portfolio-card li { font-size: 13px; color: #0F2537; font-weight: 700; position: relative; padding-left: 14px; }
-    .portfolio-card li::before { content: "▪"; position: absolute; left: 0; color: #0F766E; font-size: 10px; top: 3px; }
-
+    .portfolio-card h3 { font-size: 12px; color: #0F766E; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid #E2E8F0; padding-bottom: 4px; margin-bottom: 4px; }
+    .portfolio-card ul { list-style: none; display: flex; flex-direction: column; gap: 4px; padding: 0; margin: 0; }
+    .portfolio-card li { font-size: 11px; color: #0F2537; position: relative; padding-left: 12px; line-height: 1.15; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .portfolio-card li::before { content: "▪"; position: absolute; left: 0; color: #0F766E; font-size: 9px; top: 0.12em; }
+    
     .evidence-rule-bar {
-      margin-top: 18px;
-      padding: 16px;
+      margin-top: 12px;
+      padding: 10px 16px;
       background: #0F2537;
       color: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
+      border-radius: 4px;
     }
-    .rule-title { font-weight: 700; color: #D97706; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; min-width: 160px; }
-    .rule-text { font-size: 15px; opacity: 0.95; line-height: 1.25; }
+    .rule-title { font-weight: 700; color: #D97706; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; min-width: 120px; }
+    .rule-text { font-size: 13px; opacity: 0.95; line-height: 1.2; }
 
     footer { display: flex; justify-content: space-between; font-size: 11px; color: #475569; margin-top: 12px; }
+    
+    /* Ensure everything remains inside the fixed slide without overflow */
+    .slide-container, .portfolio-grid, .portfolio-card { overflow: hidden; }
   </style>
 </head>
 <body>
   <div class="slide-container">
-    <h2>Four distinct domains, one connected dependency graph</h2>
+    <h2>Defined Product Groups and names for application classification</h2>
     <div class="rule"></div>
-
+    
     <div class="portfolio-grid">
       <div class="portfolio-card">
-        <h3>Taxi Networks</h3>
-        <p>Owned brands and network operations including booking, dispatch, fleet, and technology.</p>
-        <ul>
-          <li>Booking & Dispatch</li>
-          <li>Operator & Fleet</li>
-          <li>Customer Channels</li>
-          <li>Partner Integrations</li>
-        </ul>
+        <h3>Payments_In_Vehicle</h3>
+        <ul><li>FWP</li><li>Settlement</li><li>Spotto_Giraffe</li><li>Merchant_CRM</li><li>IVT_Payment_DMG</li></ul>
       </div>
       <div class="portfolio-card">
-        <h3>Taxi Payments</h3>
-        <p>Processing, card instruments, closed-loop systems, and government subsidy programmes.</p>
-        <ul>
-          <li>Payment Processing</li>
-          <li>Cards & Closed Loop</li>
-          <li>Device Services</li>
-          <li>Subsidy Programs</li>
-        </ul>
+        <h3>Dispatch_Network_ERP</h3>
+        <ul><li>MTI_Dispatch</li><li>Driver_App / Onboarding</li><li>Web_Telop / Supervisor</li><li>Meter / Tarrifs</li></ul>
       </div>
       <div class="portfolio-card">
-        <h3>MTi</h3>
-        <p>External dispatch products; preserve product vs customer/tenant deployment distinctions.</p>
-        <ul>
-          <li>Core Dispatch Product</li>
-          <li>Customer Solutions</li>
-          <li>Customer Integrations</li>
-          <li>Product Operations</li>
-        </ul>
+        <h3>Booking_Online_Pay</h3>
+        <ul><li>Passenger_App</li><li>CNP / Web_Booker</li><li>Booking_API / IVR</li><li>MTI_Booking_App</li></ul>
       </div>
       <div class="portfolio-card">
-        <h3>Shared Enterprise</h3>
-        <p>Services genuinely shared across portfolios; validate actual consumers before classifying.</p>
-        <ul>
-          <li>Identity & Security</li>
-          <li>API & Integration</li>
-          <li>Data & Reporting</li>
-          <li>Cloud & Infrastructure</li>
-        </ul>
+        <h3>Corporate_Gov</h3>
+        <ul><li>NDIS / TSS</li><li>Cabcharge</li><li>13Cabs_Corp_Accounts</li><li>Fraud</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Data_Analytics</h3>
+        <ul><li>Data_Analytics</li><li>Business Intelligence</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Architecture</h3>
+        <ul><li>Strategy & Architecture</li><li>Design Governance</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>IT_Operations</h3>
+        <ul><li>IT_Operations</li><li>Service Desk</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>MTI</h3>
+        <ul><li>MTI Legacy</li><li>Core Product</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Corporate_IT</h3>
+        <ul><li>Corporate_IT</li><li>End User Services</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Info_Security</h3>
+        <ul><li>Cyber Security</li><li>GRC</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Phoenix</h3>
+        <ul><li>Phoenix Platform</li><li>Dispatcher / Driver</li><li>Booking / Reporting</li></ul>
+      </div>
+      <div class="portfolio-card">
+        <h3>Other</h3>
+        <ul><li>Unassigned</li><li>Legacy</li></ul>
       </div>
     </div>
-
+    
     <div class="evidence-rule-bar">
       <div class="rule-title">Dependency Rule</div>
-      <div class="rule-text">Cross-portfolio relationships are established only when evidence or an accountable owner supports them. Domains are metadata for organization, not barriers to connectivity.</div>
+      <div class="rule-text">Cross-portfolio relationships are established only when evidence or an accountable owner supports them. Groups organize the graph, but do not split it into disconnected maps.</div>
     </div>
-
+    
     <footer>
       <span>Source: adm/skill.md Section 3</span>
       <span>3</span>

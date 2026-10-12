@@ -1,5 +1,5 @@
 {
-  "product": {"product_id": "MTI-PROD-1", "name": "Dispatch Suite", "domain": "MTi"},
+  "product": {"product_id": "MTI-PROD-1", "name": "Dispatch Suite", "product_group": "MTi"},
   "deployments": [
     {"deployment_id": "DEP-A", "customer_or_tenant": "Tenant-A", "environment": "Production", "version": "synthetic-1"},
     {"deployment_id": "DEP-B", "customer_or_tenant": "Tenant-B", "environment": "Production", "version": "synthetic-1"}

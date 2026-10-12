@@ -1,2 +1,2 @@
-source_id,source_record_id,application_name,business_domain,application_owner,business_owner,environment
+source_id,source_record_id,application_name,product_group,application_owner,business_owner,environment
 registry-a,APP-303,Payments Gateway,Taxi Payments,,,Production

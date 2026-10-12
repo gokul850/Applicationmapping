@@ -9,15 +9,15 @@
     .slide-container { width: 1280px; height: 720px; padding: 48px; display: flex; flex-direction: column; }
     h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
     .rule { height: 2px; background: #0F2537; margin-bottom: 40px; }
-
-    .stack-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      justify-content: center;
+    
+    .stack-container { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 16px; 
+      justify-content: center; 
     }
-
+    
     .layer {
       display: grid;
       grid-template-columns: 240px 1fr;
@@ -60,18 +60,18 @@
   <div class="slide-container">
     <h2>Model applications, deployments, CIs, and evidence separately</h2>
     <div class="rule"></div>
-
+    
     <div class="stack-container">
       <div class="layer">
         <div class="layer-label">Application Layer</div>
         <div class="layer-content">
           <div class="item"><strong>Canonical ID</strong><span>Authoritative registry key</span></div>
-          <div class="item"><strong>Business Context</strong><span>Domain & logical group</span></div>
+          <div class="item"><strong>Product Context</strong><span>Group & Product Name</span></div>
           <div class="item"><strong>Ownership</strong><span>Support teams & owners</span></div>
           <div class="item"><strong>Lifecycle</strong><span>Production / DR / Test</span></div>
         </div>
       </div>
-
+      
       <div class="layer">
         <div class="layer-label">Deployment Layer</div>
         <div class="layer-content">
@@ -97,12 +97,12 @@
         <div class="evidence-grid">
           <div class="item"><strong>Traceability</strong><span>Preserved source record IDs</span></div>
           <div class="item"><strong>Confidence</strong><span>Probable vs Confirmed</span></div>
-          <div class="item"><strong>Validation</strong><span>Owner attestations</span></div>
+          <div class="item"><strong>Validation</strong><span>Product steward attestations</span></div>
           <div class="item"><strong>Conflict</strong><span>Explicit exception queues</span></div>
         </div>
       </div>
     </div>
-
+    
     <footer>
       <span>Logical Model: adm/skill.md Sections 6-9</span>
       <span>4</span>

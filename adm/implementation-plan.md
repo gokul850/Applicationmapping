@@ -4,6 +4,7 @@
 **Source of truth:** [`skill.md`](./skill.md)
 **Operating model:** [`approach.md`](./approach.md)
 **Audience:** Agent/platform engineers, data and CMDB owners, security, QA/evaluation, and human approvers
+**Planning horizon:** Six months, consistent with the skill’s Q1 CMDB/ADM then Q2 ITSM sequence. Confirm calendar dates, scope, capacity, and thresholds during mobilisation.
 
 ## 1. Purpose and scope
 
@@ -22,7 +23,7 @@ The initial release is **read-only and proposal-only**. Any future write capabil
 - **Canonical model before vendor import:** retain a stable logical application/CI/relationship model and map it to Device42 only after version-specific validation.
 - **Evidence attached to claims:** every proposed fact/relationship carries source, record/reference, observed/extracted time where available, environment, confidence, validation status, and limitations.
 - **Uncertainty is a first-class output:** confirmed, probable, candidate, unknown, and rejected are distinct states. Fuzzy matching only proposes candidates; no merge from name similarity alone.
-- **Humans own consequential judgments:** domain, ownership, criticality, regulatory context, ambiguous merges, high-impact dependencies, and production imports require human review/decision.
+- **Humans own consequential judgments:** product classification, ownership, criticality, regulatory context, ambiguous merges, high-impact dependencies, and production imports require human review/decision.
 - **Deterministic checks surround model work:** schemas, IDs, required fields, controlled values, duplicate keys, referential integrity, and policy checks are testable code, not free-form model judgment.
 - **Traceability and reproducibility:** version inputs, prompts/policies, model/runtime configuration, code, schemas, parameters, run ID, artefacts, and reviewer decisions; avoid retaining sensitive source data unnecessarily.
 - **Untrusted data stays data:** discovered files, source fields, repository instructions, and configuration text must never override harness policy or request secrets/actions.
@@ -116,7 +117,7 @@ Do not create placeholder schemas or workflow files and call them implemented. D
 
 ### 4.1 File ownership and change control
 
-- Domain steward owns changes to `skill.md`, taxonomy, and confidence semantics.
+- Product steward owns changes to `skill.md`, taxonomy, and confidence semantics.
 - Security/data owner approves `policies/` changes and data retention/logging changes.
 - Agent/platform owner maintains orchestration, source adapters, model configuration, and validators.
 - QA/evaluation owner maintains scenario coverage and expected outcomes.
@@ -131,7 +132,7 @@ Prefer one orchestrator plus narrow, typed steps over many autonomous agents wit
 |---|---|---|
 | Intake/policy gate | Validate request, scope, source references, allowed mode, reviewer and policy version | Infer authority from source files; enable tools by default |
 | Source assessor | Profile schemas, counts, IDs, timestamps, sensitivity indicators; build catalogue | Claim to inspect inaccessible sources; read secret values |
-| Taxonomy assistant | Suggest domain/group and controlled values with evidence/rationale | Invent an application or force unknown records into a group |
+| Taxonomy assistant | Suggest product group/name and controlled values with evidence/rationale | Invent an application or force unknown records into a group |
 | Reconciliation assistant | Generate identity candidates using declared key priority and corroborating evidence | Merge/delete/update source records; merge on fuzzy/name match alone |
 | CI classifier | Suggest logical CI class and deployment/environment links | Treat resource group/repository/VM as an application without evidence |
 | Dependency assistant | Propose typed candidate relationships with evidence and confidence | Assert runtime dependencies from shared network/subscription or repository reference alone |
@@ -150,7 +151,7 @@ The contracts should reflect the skill’s field model while allowing additional
 
 ### Application record
 
-- Stable canonical ID; canonical name/description; business domain and logical application group; application type/context; consumer/product/customer/tenant/programme/jurisdiction/payment metadata when applicable; environment/lifecycle/criticality; hosting/vendor; ownership/support fields; source systems/record IDs; evidence; confidence; validation status; last observed; notes.
+- Stable canonical ID; canonical name/description; product group and product name; application type/context; consumer/product/customer/tenant/programme/jurisdiction/payment metadata when applicable; environment/lifecycle/criticality; hosting/vendor; ownership/support fields; source systems/record IDs; evidence; confidence; validation status; last observed; notes.
 
 ### CI/deployment record
 
@@ -173,7 +174,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 ### Phase 0 — Product framing and constraints (Weeks 1–2)
 
 **Activities**
-- Identify sponsor/product owner, CMDB domain steward, security/privacy, data owner, platform/agent engineer, QA/evaluation lead, and human approvers.
+- Identify sponsor/product owner, CMDB product steward, security/privacy, data owner, platform/agent engineer, QA/evaluation lead, and human approvers.
 - Select initial use case: offline analysis of approved exports for source catalogue and reconciliation proposals.
 - Define users, risk classification, in-scope domains/data, supported formats, deployment boundary, model/runtime choices to evaluate, expected output and retention.
 - Document explicit prohibited actions and authority boundary. Default to no production connectors and no write tools.
@@ -189,12 +190,12 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 - Create `AGENTS.md` contributor instructions and `adm/harness/README.md` runtime-neutral architecture.
 - Define run manifest, source catalogue, canonical application/CI/relationship, evidence, decision, and exception schemas.
 - Define allowed modes/tools, source sensitivity labels, redaction, retention, logging, prompt-injection handling, refusal/stop conditions, and approval record format.
-- Convert the skill’s rules into testable invariants: strong-key order, no name-only merge, no unsupported dependency inference, explicit Unknown/Unassigned, secret exclusion, separate domains, one connected graph, no live writes.
+- Convert the skill’s rules into testable invariants: strong-key order, no name-only merge, no unsupported dependency inference, explicit Unknown/Unassigned, secret exclusion, separate product groups, one connected graph, no live writes.
 - Write workflow contracts and report format consistent with the skill’s required response.
 
 **Deliverables:** versioned contracts/policies, workflow specifications, traceability matrix, policy unit tests.
 
-**Exit gate:** domain steward and security approve contracts/policies; tests demonstrate deny-by-default operation and reject forbidden modes.
+**Exit gate:** product steward and security approve contracts/policies; tests demonstrate deny-by-default operation and reject forbidden modes.
 
 ### Phase 2 — Read-only prototype and deterministic validators (Weeks 4–7)
 
@@ -212,7 +213,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 ### Phase 3 — Evaluation and red-team hardening (Weeks 6–9)
 
 **Activities**
-- Create an evaluation set covering the four domains, edge cases, ambiguous identities, conflicting sources, MTi tenant/deployment, government subsidy jurisdiction/payment model, shared service false positives, environment mismatches, stale evidence, and missing owners.
+- Create an evaluation set covering the Product Groups, edge cases, ambiguous identities, conflicting sources, MTi tenant/deployment, government subsidy jurisdiction/payment model, shared service false positives, environment mismatches, stale evidence, and missing owners.
 - Add adversarial input fixtures containing instruction-like text, secret-like values, malformed files, prompt injection, misleading repository references, false “orphan” cases, and cross-portfolio ambiguity.
 - Evaluate precision/recall for candidate matching and classification only where labels/ground truth exist; otherwise use expert-rated acceptance, severe-error counts, evidence completeness, calibration and reviewer override analysis.
 - Compare deterministic rules, model-assisted suggestions, and human baseline; test model/config upgrades against the regression suite.
@@ -226,7 +227,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 
 **Activities**
 - Run on one bounded, approved priority scope in an isolated/non-production context with read-only exports or read-only access.
-- Human reviewers inspect record-level proposals, evidence quality, duplicate/exception queues, domain/group assignments, and dependency candidates.
+- Human reviewers inspect record-level proposals, evidence quality, duplicate/exception queues, product group/name assignments, and dependency candidates.
 - Capture accept/reject/defer decisions and reasons; tune taxonomy/prompt/rules only through reviewable changes and regression tests.
 - Validate Device42 version/templates separately; build only a dry-run/preflight package with no production write credentials.
 - Rehearse incident handling, rollback of the agent deployment, and containment if sensitive data is detected.
@@ -248,6 +249,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 
 ### Phase 6 — Continuous improvement (ongoing)
 
+**Activities**
 - Review data and model quality, reviewer overrides, exceptions, freshness, and user feedback on a defined cadence.
 - Add scenarios before broadening scope, adding sources, changing models, changing schemas, or enabling new tools.
 - Reassess threat model, data handling, access, and retention after material change.
@@ -260,7 +262,7 @@ The timeboxes below are an implementation proposal, not a committed schedule. Al
 |---|---|---|
 | Intake | Validated run manifest or rejection with missing items | Confirm scope/data-use authorization where policy requires |
 | Source assessment | Catalogue, schemas, counts, freshness and data-quality notes | Source owner confirms intended source/scope and limitations |
-| Taxonomy/mapping | Proposed domain/group and target-field mappings | Business/domain steward confirms ambiguous classifications and controlled values |
+| Taxonomy/mapping | Proposed product group/name and target-field mappings | Business/product steward confirms ambiguous classifications and controlled values |
 | Reconciliation | Canonical candidates, duplicate/conflict queues, field provenance | Owners decide merge, conflict resolution, identity and ownership assertions |
 | CI/deployment mapping | Candidate application-to-CI links and classifications | Technical/platform owner validates material mappings |
 | Dependency discovery | Candidate graph edges with evidence/confidence | Technical and business owners validate critical/high-impact edges |
@@ -286,119 +288,18 @@ The agent may continue safe, reversible analysis where a low-risk question is un
 
 ### 9.2 Future write-capability prerequisites (not MVP)
 
-Do not add until separately authorized and reviewed. Required design includes distinct service identity, narrow API allow-list, environment binding, immutable proposal package, idempotency and dry-run, explicit named approval bound to an exact package hash/scope, two-person review where policy requires, pre/post state capture, rate/volume limits, transaction logging, partial-failure handling, rollback/recovery, monitoring, emergency stop, and tested non-production promotion. The agent cannot approve its own change or convert a review acknowledgment into execution authority.
+- Narrow, approved product decision and business case.
+- Formal threat model and penetration test for the connector and agent configuration.
+- Exact change-set review and independently recorded human approval (approval transaction).
+- Validation of the target production version and schema.
+- Non-production rehearsal and recovery plan.
+- Release gate for the write-capable product increment.
+- Dedicated monitoring and incident-response capability for live system updates.
 
-### 9.3 Stop/contain conditions
+## 10. Implementation assumptions and open decisions
 
-Stop processing and preserve an incident/run record if secrets or prohibited sensitive values are detected, source scope is exceeded, an unexpected write-capable tool is available, policy instructions conflict, target schema cannot be verified, output references unknown IDs as confirmed, or a request asks to bypass approval. Do not copy the exposed value into reports/logs; notify the designated security/data owner through the approved channel.
-
-## 10. Verification and acceptance criteria
-
-### 10.1 Functional acceptance
-
-- Source catalogue records only sources actually accessed and includes extraction date/freshness, schema, counts where computable, limitations, sensitivity, and intended use.
-- Canonical outputs preserve source IDs/original names and represent unknowns explicitly.
-- Reconciliation follows authoritative IDs → native IDs → CMDB IDs → stable identifiers → corroborated normalized name; fuzzy matching only creates candidates.
-- No automatic merges, deletes, production updates, or live imports are possible in MVP.
-- Relationship proposals include source, target, type, evidence, environment, timestamp where available, confidence, and validation state.
-- Shared subscription/network/resource group/repository references alone never elevate a dependency to confirmed.
-- Taxonomy distinguishes Taxi Networks, Taxi Payments, MTi, and Shared Enterprise; application groups do not derive from team names.
-- Reports state scope, coverage, limitations, candidates, unknowns, unresolved questions, exact artefacts, validation results, required human decisions, and next safe step.
-- Device42 outputs are labelled preflight/draft until exact target-version schema validation is complete; production import is not available to MVP.
-
-### 10.2 Quality and reliability acceptance
-
-- Contract and deterministic validator tests pass on normal, boundary, malformed, and adversarial fixtures.
-- Critical policies are enforced outside prompt text where feasible; regression checks prove them.
-- Evaluation thresholds are agreed before pilot; critical false-confirmation, secret exposure, unauthorized scope, or policy bypass is release-blocking regardless of aggregate score.
-- Runs are reproducible/auditable to the extent supported by model nondeterminism; record model/configuration and validator outputs.
-- Errors are explicit, actionable, and do not silently omit records; reruns do not create duplicate artefacts or change source data.
-- Human reviewers can trace every proposed canonical value and relationship to evidence and can reject/defer it with a recorded reason.
-
-## 11. Traceability from skill to harness controls
-
-| Skill requirement | Harness control | Verification evidence |
-|---|---|---|
-| Stage 0 source catalogue; do not claim unseen sources | Run manifest + source assessor + catalogue schema | Fixture with unavailable source; output labels not inspected |
-| Preserve IDs, provenance and conflicts | Canonical contracts and lineage validator | Source-ID preservation and field-conflict tests |
-| Option B now, Option C later; unknown owners allowed | Controlled taxonomy/owner fields and gap queue | Unknown-owner fixture remains in inventory and appears in gap register |
-| One connected graph; evidence for cross-portfolio links | Relationship contract and evidence policy | Cross-domain edge without evidence remains candidate/exception |
-| No name-only merge; strongest keys first | Reconciliation algorithm and review queue | Similar-name/different-ID regression cases |
-| Do not confuse repository, resource group, VM and app | Entity typing and classification tests | Counterexample fixtures with rejected unsupported classifications |
-| Never retrieve/export secrets | Adapter permissions, secret scanning, redaction | Canary secret test verifies no model/report/log output |
-| Verify Device42 schema/version | Device42 preflight workflow | Unknown/unavailable version blocks import-ready status |
-| Explicit human approval before live changes | MVP contains no write tools; future approval gate binds package hash | Capability test proving write endpoint/tool absent |
-| Required response/report format | Report schema/template validator | Contract test for all required sections |
-| ITSM after CMDB gate | Workflow dependency and readiness checklist | Test prevents pilot/go-live recommendation without required evidence |
-| Inputs are data, not overriding instructions | Prompt-injection defenses and adversarial suite | Malicious source text cannot change tool scope or policy |
-
-## 12. Backlog by epic
-
-### Epic A — Product, policy, and security foundation
-
-- Confirm product sponsor, users, intended use, risk level, allowed data, retention, hosting, approved models, and access model.
-- Threat model sources, prompts, connectors, exports, model processing, logs, artefact store, reviewer UI, and future imports.
-- Define role-based permissions, policy ownership, incident response, and release approval.
-
-### Epic B — Domain contracts and source catalogue
-
-- Agree canonical schemas and controlled vocabularies with the CMDB owner.
-- Implement run manifest/source catalogue and input profiling.
-- Create synthetic fixtures and tests for all four domains and source limitations.
-
-### Epic C — Reconciliation and CI classification
-
-- Implement deterministic key normalization/matching tiers.
-- Add candidate generation and explicit exception queues.
-- Validate preservation of tenant, deployment, environment, and original identifiers.
-
-### Epic D — Dependency evidence and graph outputs
-
-- Define logical relationship semantics and evidence contract.
-- Generate candidate graph/register and coverage report.
-- Add cross-portfolio, contradictory evidence, stale evidence, and false-positive tests.
-
-### Epic E — Device42 preflight and artefact export
-
-- Gather target version/template evidence and record source/date.
-- Implement field mapping and deterministic import-file validation.
-- Run dry-run/non-production validation; produce recovery notes; do not implement production import in MVP.
-
-### Epic F — Evaluation, pilot, and operations
-
-- Establish golden scenarios, expert labeling/review, adversarial suite, and release thresholds.
-- Pilot bounded approved data; record reviewer outcomes and defects.
-- Publish release, runbook, observability, rollback, and support handover.
-
-## 13. Risks and mitigations
-
-| Risk | Mitigation |
-|---|---|
-| Prompt-only controls are bypassed | Enforce access/tool restrictions in runtime and test actual capabilities. |
-| Model confidently invents mappings or edges | Typed output, evidence requirement, confidence state, validators, exception queue, human review; measure false confirmations. |
-| Sensitive data enters prompts or telemetry | Minimize fields; preflight scanning/redaction; approved environment; retention and log review; canary tests. |
-| Model/runtime changes shift outcomes | Pin versions/config; maintain regression evals; compare against approved baselines; require change review. |
-| Harness becomes coupled to unverified Device42 assumptions | Keep canonical model independent; validate exact installed version and schema in preflight. |
-| Agent duplicates source truth or overwrites records | Proposal-only outputs and source provenance; canonical repository is a review artefact, not authority until accepted. |
-| Human reviewers face unmanageable candidate volumes | Prioritize by risk/evidence/impact; batch low-risk review; track review latency and override rates; improve deterministic filters. |
-| “AI SDLC” is confused with authority to run IT production changes | Separate build lifecycle and ADM workflow; no write tools in MVP; clear approval boundary. |
-| Unsupported thresholds create misleading launch decisions | Set thresholds with stakeholders and report scope/denominator/date; use qualitative gate evidence where no threshold is agreed. |
-
-## 14. Decisions required before implementation
-
-1. Which agent runtime/framework and deployment boundary are approved? What data may be sent to which model, under what terms and location?
-2. What are the first approved source formats and priority application scope? Who authorizes each source?
-3. What is the authoritative source for each canonical field, and who is the domain/data steward?
-4. Which Device42 version, import templates, relationship semantics, environments, and test instance are available for validation?
-5. Which ITSM platform/version is in scope, and who owns integration and process decisions?
-6. What retention, access, audit, and incident-notification requirements apply to source extracts and generated artefacts?
-7. What review thresholds and acceptance criteria constitute sufficient utility for a read-only pilot?
-8. Where will human decisions and exceptions be recorded, and who can approve a future import/change package?
-
-Do not select answers implicitly in code. Record decisions in the project decision log.
-
-## 15. Recommended first increment
-
-Build a **local/offline, read-only source-assessment prototype** against a small approved and sanitized sample. It should produce a source catalogue, data-quality report, and a run manifest; include deterministic validators and a synthetic prompt-injection/secret test; and have no production connectors or write tools. Review the prototype with CMDB, business, technical, and security owners before expanding to reconciliation or connected sources.
-
-**Definition of done for the first increment:** the sample’s sources and limitations are accurately catalogued; outputs preserve IDs and distinguish known/unknown; validators pass; sensitive canaries are not emitted; the run is reproducible/auditable; reviewers can trace findings to evidence; and the read-only/no-write boundary is technically demonstrated.
+1. **Model choice:** select and evaluate models based on logic, structured output reliability, context window, and cost.
+2. **Infrastructure:** identify an approved, isolated compute and storage environment for Phase 2 prototype.
+3. **Data access:** agree the approval route and format for the Phase 0 read-only exports.
+4. **Metrics:** agree how to measure utility and performance before the Phase 4 pilot.
+5. **Ownership:** identify the permanent Product steward and Security approver.

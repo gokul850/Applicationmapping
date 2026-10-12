@@ -1,16 +1,13 @@
 
-
-
-
 ⸻
 
 name: cmdb-adm-itsm-journey
 description: >
-An LLM agent skill for reconciling an existing application registry, Azure
-resources, and on-premises infrastructure into a governed Device42 CMDB
-and Application Dependency Mapping foundation, followed by ITSM readiness.
-Uses a logical application-group model (Option B) and a roadmap toward
-explicit ownership and support relationships (Option C).
+  An LLM agent skill for reconciling an existing application registry, Azure
+  resources, and on-premises infrastructure into a governed Device42 CMDB
+  and Application Dependency Mapping foundation, followed by ITSM readiness.
+  Uses a logical product-group model (Option B) and a roadmap toward
+  explicit ownership and support relationships (Option C).
 
 CMDB, ADM and ITSM Transformation Skill
 
@@ -40,7 +37,7 @@ Do not attempt to complete the entire transformation in one uncontrolled operati
 
 Implement Option B tactically.
 
-Application groups must represent stable logical product or service responsibilities. They must not mirror the current engineering squad, support team, reporting line, or organisational chart.
+Product groups must represent stable logical product or service responsibilities. They must not mirror the current engineering squad, support team, reporting line, or organisational chart.
 
 Move progressively toward Option C by adding explicit ownership and operational accountability as evidence becomes available.
 
@@ -73,108 +70,114 @@ ITSM process design can begin in parallel during Q1. However, production ITSM on
 
 Maintain one connected dependency graph across all business portfolios.
 
-Business domains and application groups are metadata used to organise and interpret the graph. They are not separate, disconnected dependency maps.
+Product groups and names are metadata used to organise and interpret the graph. They are not separate, disconnected dependency maps.
 
 Only create cross-portfolio relationships when evidence or an accountable owner supports them.
 
-3. Business context and portfolio classification
+3. Business context and product classification
 
-Keep the following business domains distinct.
+Apply the following product groups and names to classify applications.
 
-3.1 Taxi Networks
+3.1 Payments_In_Vehicle
 
-Represents owned taxi brands and network operations, including:
+* FWP
+* Settlement
+* Spotto_Giraffe
+* Merchant_CRM
+* IVT_Payment_DMG
+* Asset_Management
+* PCA
+* Other
 
-* Passenger and corporate transport
-* Booking and dispatch
-* Operator and driver network
-* Fleet and taxi technology
-* Network commercial operations and finance
-* Customer service
-* Partner and booking integrations
+3.2 Dispatch_Network_ERP
 
-Proposed logical application groups:
+* MTI_Dispatch
+* Driver_App
+* Driver_Onboarding
+* Web_Telop
+* Meter
+* Web_Query
+* Tarrifs
+* Partner_Portal
+* Web_Supervisor
+* Other
 
-* Customer & Corporate Channels
-* Booking & Dispatch
-* Operator & Fleet
-* Network Commercial & Finance
-* Customer Service
-* Partner Integrations
-* Network Analytics, if justified by actual deployed applications
+3.3 Booking_Online_Payments
 
-3.2 Taxi Payments
+* Passenger_App
+* CNP
+* Web_Booker
+* Booking_API
+* IVR
+* MTI_Booking_App
+* Pricing
+* Other
 
-Represents payment-related products and services, including:
+3.4 Corporate_Gov
 
-* Payment processing
-* Payment terminals and devices
-* Card instruments
-* Closed-loop payment systems
-* Payment reconciliation
-* Government and state transport subsidy programmes
+* NDIS
+* TSS
+* Cabcharge
+* 13Cabs_Corp_Accounts
+* Fraud
+* Other
 
-Proposed logical application groups:
+3.5 Data_Analytics
 
-* Payment Processing
-* Cards & Closed Loop
-* Terminal & Device Services
-* Government Subsidy Programs
-* Payment Reconciliation
-* Payment Support & Disputes
-* Payment Risk, if justified by actual deployed applications
+* Data_Analytics
+* Other
 
-Do not classify all payment applications as generic finance applications.
+3.6 Architecture
 
-Capture programme, jurisdiction, payment model and terminal/device relationships where relevant.
+* Architecture
+* Other
 
-3.3 MTi
+3.7 IT_Operations
 
-Represents the acquired business that predominantly sells or operates taxi dispatch systems and associated products for its own customers.
+* IT_Operations
+* Other
 
-Proposed logical application groups:
+3.8 MTI
 
-* Core Dispatch Product
-* Customer Solutions
-* Customer Integrations
-* Product Operations
-* MTi Reporting & Analytics, if justified by actual deployed applications
+* MTI
+* Other
 
-Preserve MTi as a distinct business domain even when its technology resembles Taxi Networks technology.
+3.9 Corporate_IT
 
-Where materially relevant, distinguish:
+* Corporate_IT
+* Other
 
-* Product and version
-* Customer or tenant
-* Deployment
-* Customer-specific configuration
-* Integration endpoints
-* Environment
-* Support arrangements
+3.10 Information_Security
 
-Do not create a separate application for every customer automatically. Determine whether the deployment is a distinct application, an instance of a shared product, or a customer-specific configuration.
+* Information_Security
+* Other
 
-3.4 Shared Enterprise Services
+3.11 Phoenix
 
-Use this domain only for services genuinely shared across portfolios.
+* Phoenix
+* Platform
+* Communications
+* Dispatcher
+* Driver
+* Booking
+* Reporting
+* Configuration
+* Companion_App
+* Fleet_Support
+* Other
 
-Potential groups include:
+3.12 Other
 
-* Identity & Security
-* API & Integration
-* Data & Reporting
-* Cloud & Infrastructure
-* Operations & Observability
-* Enterprise Finance & Administration, if relevant
+* Other
 
-A shared technology does not automatically prove a shared service. Validate the actual consumers and dependencies.
+A shared technology does not automatically prove a shared product group. Validate the actual consumers and dependencies.
 
 4. Core modelling principles
 
 Distinguish the following concepts:
 
-* Business domain
-* Application group
+* Product group
+* Product name
 * Application
 * Application component
 * Business service
@@ -206,12 +209,12 @@ Inspect the available registry for:
 * Application ID
 * Application name
 * Description
-* Business domain or portfolio
+* Product group
 * Business owner
 * Application owner
 * Technical owner
 * Support team
-* Application group
+* Product name
 * Lifecycle status
 * Criticality
 * Product or vendor
@@ -309,8 +312,8 @@ Field	Rule
 ApplicationID	Stable internal identifier; preserve an authoritative existing ID where possible
 ApplicationName	Canonical application name
 Description	Evidence-based purpose
-BusinessDomain	Taxi Networks, Taxi Payments, MTi, or Shared Enterprise
-ApplicationGroup	Stable logical product/service responsibility
+ProductGroup	Payments_In_Vehicle, Dispatch_Network_ERP, Booking_Online_Payments, etc.
+ProductName	FWP, MTI_Dispatch, Passenger_App, etc.
 ApplicationType	Application, business service, technical service, or other agreed type
 BusinessContext	Business capability, product, programme or process
 Consumers	Known consuming applications, user groups, customers or channels
@@ -343,89 +346,25 @@ Use controlled values consistently.
 
 Classify resources using the actual Device42-supported CI types and the organisation’s agreed taxonomy.
 
-Potential CI categories include:
+Target entities may include:
 
-* Compute: physical server, VM, cluster, container platform
-* Application runtime: App Service, function, web server, application component
-* Data: database, data store, storage account, warehouse
-* Integration: API, API gateway, queue, topic, message broker, file-transfer endpoint
-* Network: load balancer, DNS name, endpoint, network appliance
-* Device: payment terminal, in-vehicle device or other managed endpoint
-* Platform service: identity, monitoring, logging, secrets-management service metadata
+* Virtual Machine
+* Physical Server
+* Cloud Instance
+* Kubernetes Cluster / Node / Pod / Service
+* Database Instance / Cluster
+* Storage Volume / Share
+* API Gateway / Endpoint
+* Load Balancer / VIP
+* VLAN / Subnet
+* Switch / Router
+* Firewall
+* DNS Record
+* Software Instance / Deployed Component
 
-These are candidate categories. Do not create a separate CI for every Azure resource type without checking operational value, Device42 support and scope.
+8. Application dependency mapping
 
-Preserve, where available:
-
-* Native Azure resource ID
-* Subscription and resource group
-* Region
-* Environment
-* Hostname and DNS name
-* IP address or endpoint metadata
-* Deployment identifier
-* Application version
-* Customer or tenant
-* Source system
-* Last observed timestamp
-
-Represent production and non-production separately where needed for change-impact analysis and ITSM routing.
-
-One application can span multiple resource groups or subscriptions. One resource group can contain resources supporting multiple applications. Do not assume a one-to-one relationship.
-
-8. Dependency relationship model
-
-Maintain a separate relationship register.
-
-Recommended logical fields:
-
-* SourceCI_ID
-* SourceCI_Name
-* RelationshipType
-* TargetCI_ID
-* TargetCI_Name
-* Environment
-* EvidenceSource
-* EvidenceReference
-* EvidenceTimestamp
-* Confidence
-* ValidationStatus
-* LastObserved
-* Notes
-
-Relationship meanings may include:
-
-* Calls
-* Reads from or writes to
-* Sends messages to
-* Authenticates through
-* Hosted by or runs on
-* Routes through
-* Monitored by
-* Supports
-
-Map these meanings to actual supported Device42 relationship types. Do not assume these labels are directly accepted by the import interface.
-
-Separate:
-
-1. Business support relationships
-2. Runtime application-to-application dependencies
-3. Application-to-technical-CI relationships
-4. Infrastructure relationships
-5. Ownership and support relationships
-
-Evidence rules
-
-For every proposed dependency, identify:
-
-* Source
-* Target
-* Relationship semantics
-* Evidence source
-* Observation date
-* Environment
-* Confidence
-* Validation status
+Map the logical and physical dependencies supporting the application inventory.
 
 Useful evidence may include configuration references, deployment definitions, API definitions, monitoring topology, network flows, DNS records, database connection metadata, queue configuration, or owner confirmation.
 
@@ -491,8 +430,8 @@ Deliverables: Source catalogue, data dictionary, initial data-quality report and
 
 Stage 1 — Establish taxonomy and mapping rules
 
-* Apply the four business-domain classifications.
-* Apply proposed Option B application groups.
+* Apply the Product Group classifications.
+* Apply the Product Name classifications.
 * Define controlled values and identity keys.
 * Define source precedence for conflicting fields.
 * Map logical fields to the target Device42 schema.
@@ -504,7 +443,7 @@ Stage 2 — Reconcile the application registry
 
 * Match registry applications against Azure and on-premises evidence.
 * Preserve original IDs and aliases.
-* Assign portfolio and group only when supported.
+* Assign product group and name only when supported.
 * Identify probable applications missing from the registry.
 * Separate candidates from confirmed applications.
 * Capture ownership where known without blocking inventory creation for unknown owners.
@@ -610,7 +549,7 @@ Month 2: Populate
 
 * Reconcile the application registry.
 * Classify Azure and on-premises resources.
-* Establish the four business domains and logical application groups.
+* Establish the product groups and names.
 * Build initial application-to-CI mappings.
 * Create candidate dependencies.
 
@@ -662,7 +601,7 @@ Report each metric with its scope, numerator, denominator and extraction date.
 Suggested measures:
 
 * Percentage of in-scope applications with canonical identities
-* Percentage with validated business domain and application group
+* Percentage with validated product group and product name
 * Percentage with environment and lifecycle status
 * Percentage of priority applications with validated technical owners/support teams
 * Percentage of applicable priority applications mapped to confirmed hosting/runtime CIs
@@ -738,7 +677,7 @@ Maintain explicit exception queues for:
 * Ambiguous application identity
 * Potential duplicates
 * Conflicting source fields
-* Unknown business domain or application group
+* Unknown product group or product name
 * Unknown owner or support team
 * Application without hosting evidence
 * Resource without an application mapping
@@ -786,7 +725,7 @@ Do not import or modify any live system.
 
 First inventory the available inputs, inspect their schemas and extraction dates, identify sensitive fields, and produce a source catalogue and data-quality assessment.
 
-Then propose a canonical application, CI and relationship model aligned with Taxi Networks, Taxi Payments, MTi and Shared Enterprise Services, using the agreed Option B logical application groups.
+Then propose a canonical application, CI and relationship model aligned with the Product Group and Product Name taxonomy.
 
 Reconcile records using strong identifiers first. Preserve provenance, distinguish confirmed facts from candidates, and place ambiguous matches into exception queues.
 
@@ -797,10 +736,9 @@ Finish by presenting the findings, generated artefacts, unresolved decisions, ri
 18. Non-negotiable principles
 
 * CMDB first; ITSM second.
-* Option B now; roadmap to Option C.
-* Keep Taxi Networks, Taxi Payments, MTi and Shared Enterprise Services distinct.
+* Roadmap from product groups to Option C.
 * Maintain one connected ADM dependency graph.
-* Keep logical application groups independent of current engineering teams.
+* Keep product groups independent of current engineering teams.
 * Preserve MTi customer/tenant and deployment distinctions where material.
 * Represent government subsidy programme and jurisdiction metadata where relevant.
 * Do not invent applications, owners, dependencies, criticality or lifecycle status.

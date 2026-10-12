@@ -7,7 +7,7 @@
 
 ## 1. Executive summary
 
-Establish a governed, evidence-backed inventory of applications, technical configuration items (CIs), deployments, and dependencies before onboarding ITSM processes to the CMDB. Start with **Option B**: stable logical application groups that reflect product/service responsibility, not current teams or reporting lines. Capture known ownership now, record unknown ownership explicitly, and close gaps progressively toward **Option C**.
+Establish a governed, evidence-backed inventory of applications, technical configuration items (CIs), deployments, and dependencies before onboarding ITSM processes to the CMDB. Start with **Option B**: stable logical product groups that reflect product responsibility, not current teams or reporting lines. Capture known ownership now, record unknown ownership explicitly, and close gaps progressively toward **Option C**.
 
 The programme is not a bulk-import exercise. It is a staged reconciliation and validation effort that preserves source identifiers, provenance, uncertainty, and exceptions. Device42 is the target platform, subject to validating the installed version, supported CI and relationship types, import schemas, integration options, and operational fit. No production data is changed until a named approver accepts a documented change package.
 
@@ -20,7 +20,7 @@ The six-month outcome is a governed Option B CMDB, a validated priority-scope AD
 1. A reconciled canonical application register with preserved source IDs and aliases.
 2. A useful, scoped technical CI inventory spanning approved Azure and on-premises sources.
 3. Traceable application-to-deployment/CI mappings and dependency relationships.
-4. A single connected ADM graph across Taxi Networks, Taxi Payments, MTi, and Shared Enterprise Services; portfolio/domain values organise the graph but do not split it into disconnected maps.
+4. A single connected ADM graph across all Product Groups; group values organise the graph but do not split it into disconnected maps.
 5. Priority applications and critical relationships validated by accountable business and technical representatives.
 6. A repeatable CMDB operating model: field ownership, refresh, stewardship, exception handling, and audit trail.
 7. ITSM process and integration readiness established against the CMDB, with production onboarding gated by agreed evidence.
@@ -29,7 +29,7 @@ The six-month outcome is a governed Option B CMDB, a validated priority-scope AD
 
 Agree denominators, priority scope, freshness windows, and thresholds with stakeholders before reporting. Report scope, numerator, denominator, extraction date, source, and limitations with every metric. Candidate measures from the skill include:
 
-- In-scope applications with canonical identity, validated domain/group, environment, and lifecycle status.
+- In-scope applications with canonical identity, validated product group and product name, environment, and lifecycle status.
 - Priority applications mapped to confirmed runtime/hosting CIs.
 - Critical dependencies with evidence and owner/technical validation.
 - Duplicate candidates, unresolved conflicts, unmapped resources, and ownership gaps, including age and disposition.
@@ -42,7 +42,7 @@ Do not set target percentages or claim readiness solely from CI counts until sco
 ## 3. Non-negotiable principles
 
 - **CMDB first; ITSM second.** ITSM design may proceed in parallel, but production onboarding must pass the CMDB readiness gate.
-- **Option B now; Option C progressively.** Application groups are durable logical responsibilities, independent of team charts. Unknown ownership is recorded as `Unassigned` or `Unknown` and tracked, not fabricated or used to block inventory.
+- **Option B now; Option C progressively.** Product groups are durable logical responsibilities, independent of team charts. Unknown ownership is recorded as `Unassigned` or `Unknown` and tracked, not fabricated or used to block inventory.
 - **One connected dependency graph.** Create cross-portfolio links only when evidence or an accountable owner supports them.
 - **Evidence over inference.** A shared resource group, subscription, network, repository, or technology stack does not prove an application or runtime dependency. Name similarity alone does not justify merging.
 - **Preserve provenance.** Keep source record IDs/names, extraction dates, evidence references, confidence, status, and conflicts.
@@ -56,7 +56,7 @@ Do not set target percentages or claim readiness solely from CI counts until sco
 ### 4.1 In scope
 
 - Source discovery and catalogue for the application registry, Azure resource inventory, on-premises inventory, and supporting evidence actually available.
-- Taxonomy and controlled-value decisions for the four business domains and logical application groups.
+- Taxonomy and controlled-value decisions for the product groups and product names.
 - Canonical application and CI model, identity resolution, relationship register, validation queues, and data-quality/coverage reporting.
 - Device42 version/schema and import-capability validation; import package preparation and dry-run validation.
 - CMDB stewardship and operating procedures.
@@ -78,7 +78,7 @@ Assign named people during mobilisation; roles below are functions, not assumed 
 | Role | Accountabilities | Key decisions |
 |---|---|---|
 | Executive sponsor | Funding, priority, cross-portfolio escalation | Scope, risk appetite, readiness-gate acceptance |
-| Business portfolio/domain representatives | Business purpose, domain/group, consumers, criticality context | Business classification, material service relationships |
+| Business product representatives | Business purpose, product group/name, consumers, criticality context | Business classification, material service relationships |
 | Application/product owners | Application identity, lifecycle, product/tenant distinctions, ownership | Canonical application validation, lifecycle and owner attestations |
 | Technical/service owners | Runtime/deployment facts, technical relationships, support model | Technical CI/application mappings and dependency validation |
 | CMDB/data owner | Canonical model, data quality, field stewardship, audit | Source-of-record and reconciliation policy |
@@ -95,7 +95,7 @@ Use a decision log with issue/question, options, recommendation, supporting evid
 Run five coordinated workstreams with a single delivery lead and shared decision/exception registers:
 
 1. **Source and data governance:** inventory inputs, document extraction/freshness/sensitivity, set source precedence, establish stewardship.
-2. **Application portfolio and taxonomy:** agree canonical identity rules, four domains, logical groups, controlled values, owner-gap process.
+2. **Application portfolio and taxonomy:** agree canonical identity rules, product groups, product names, controlled values, owner-gap process.
 3. **Technical inventory and ADM:** classify in-scope Azure/on-premises resources, map applications to deployments/CIs, propose evidence-backed dependencies, validate high-impact paths.
 4. **Device42 and CMDB operations:** validate version/schema/import approach, create repeatable mapping and dry-run checks, define refresh, reconciliation, and recovery procedures.
 5. **ITSM readiness and adoption:** define service catalogue/processes in parallel, validate CMDB dependencies and integration, pilot ticket/change-to-CI workflows only after the readiness gate.
@@ -117,7 +117,7 @@ Each workstream uses a reviewable cycle: **collect → catalogue → analyse →
 
 - Catalogue available inputs; inspect schemas, keys, record counts, extraction dates, data sensitivity, and source limitations.
 - Agree canonical field definitions, source-of-record precedence, controlled values, identity/matching rules, confidence/status definitions, and evidence minimums.
-- Confirm Option B taxonomy for Taxi Networks, Taxi Payments, MTi, and Shared Enterprise Services; identify items needing business decision.
+- Confirm Option B taxonomy for the defined Product Groups; identify items needing business decision.
 - Validate Device42 version, supported CI/relationship types, import templates, keys, environment handling, and non-production test options.
 - In parallel, begin ITSM service/process discovery without production onboarding.
 
@@ -208,11 +208,11 @@ Suggested cadence: weekly workstream review; fortnightly cross-workstream decisi
 
 ## 11. Immediate next actions
 
-1. Appoint the sponsor, delivery lead, CMDB/data owner, business-domain representatives, technical/platform leads, security contact, and ITSM process owner.
+1. Appoint the sponsor, delivery lead, CMDB/data owner, business product representatives, technical/platform leads, security contact, and ITSM process owner.
 2. Confirm the first priority scope (applications/services and environments) and the source custodians; do not set arbitrary completeness thresholds.
 3. Request/locate approved read-only exports and record their extraction dates, owners, sensitivity, and handling constraints.
 4. Validate Device42 and ITSM versions, non-production access, supported templates, and integration evidence.
-5. Hold a taxonomy/identity/evidence workshop and publish decisions and open questions.
+5. Hold a product group and name taxonomy workshop and publish decisions and open questions.
 6. Establish the artefact repository, access controls, review cadence, and the G0/G1 approval path.
 
 **First safe delivery step:** complete Stage 0 source discovery and catalogue using only approved read-only inputs; make no production changes.

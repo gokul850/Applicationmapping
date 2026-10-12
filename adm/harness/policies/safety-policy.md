@@ -20,12 +20,12 @@
 - Preserve conflicting source values and identifiers; route ambiguity to the exception queue.
 - Never claim complete coverage without defined scope, denominator, freshness, evidence criteria, and validation.
 
-## 3. Domain constraints
+## 3. Product Group constraints
 
-- Keep Taxi Networks, Taxi Payments, MTi, and Shared Enterprise Services distinct.
-- Application groups represent stable logical product/service responsibilities, not current teams or reporting lines.
+- Keep the defined Product Groups distinct.
+- Product names represent stable logical product responsibilities, not current teams or reporting lines.
 - Preserve MTi product/customer/tenant/deployment distinctions where material.
-- Do not force all payment services into generic finance; retain programme/jurisdiction/payment model where relevant.
+- Do not force all services into a single group; retain product, customer, programme, and jurisdiction context where relevant.
 - Do not confuse an application with a repository, resource group, VM, business service, deployment, or CI.
 
 ## 4. Untrusted content and prompt injection

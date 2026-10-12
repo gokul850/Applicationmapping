@@ -16,9 +16,9 @@
     "purpose": {"type": "string", "minLength": 10},
     "scope": {
       "type": "object", "additionalProperties": false,
-      "required": ["business_domains", "priority_scope", "environments", "excluded_sources"],
+      "required": ["product_groups", "priority_scope", "environments", "excluded_sources"],
       "properties": {
-        "business_domains": {"type": "array", "uniqueItems": true, "items": {"enum": ["Taxi Networks", "Taxi Payments", "MTi", "Shared Enterprise Services"]}},
+        "product_groups": {"type": "array", "uniqueItems": true, "items": {"enum": ["Payments_In_Vehicle", "Dispatch_Network_ERP", "Booking_Online_Payments", "Corporate_Gov", "Data_Analytics", "Architecture", "IT_Operations", "MTI", "Corporate_IT", "Information_Security", "Phoenix", "Other"]}},
         "priority_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
         "environments": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
         "excluded_sources": {"type": "array", "items": {"type": "string"}}
